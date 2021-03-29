@@ -1,27 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import './Navigation.css'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  
+
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
   };
-  
-  useEffect(() => {
-    if (!showMenu) return;
 
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
-
-    document.addEventListener('click', closeMenu);
-  
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  const closeMenu = () => {
+    setShowMenu(false);
+  };
 
   const logout = (e) => {
     e.preventDefault();
@@ -30,17 +23,22 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
+      <div onMouseOver={openMenu} >
+        <i className="gg-profile"></i>
+      </div>
       {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
+        <div className="drop">
+          <div onMouseLeave={closeMenu}>
+            <div className="drop-item">
+              <p align="center"> {user.username}</p>
+              <p align="center">{user.email}</p>
+
+              <button align='center' className='logout' onClick={logout}>Log Out</button>
+
+            </div>
+          </div>
+        </div>
+
       )}
     </>
   );
