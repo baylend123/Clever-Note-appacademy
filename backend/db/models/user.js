@@ -31,26 +31,26 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   },
-  {
-    defaultScope: {
-      attributes: {
-        exclude: ['hashedPassword', 'email', 'createdAt', 'updatedAt'],
+    {
+      defaultScope: {
+        attributes: {
+          exclude: ['hashedPassword', 'email', 'createdAt', 'updatedAt'],
+        },
       },
-    },
-    scopes: {
-      currentUser: {
-        attributes: { exclude: ['hashedPassword'] },
+      scopes: {
+        currentUser: {
+          attributes: { exclude: ['hashedPassword'] },
+        },
+        loginUser: {
+          attributes: {},
+        },
       },
-      loginUser: {
-        attributes: {},
-      },
-    },
-  });
-  User.associate = function(models) {
+    });
+  User.associate = function (models) {
     // associations can be defined here
   };
 
-  User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function
+  User.prototype.toSafeObject = function () { // remember, this cannot be an arrow function
     const { id, username, email } = this; // context will be the User instance
     return { id, username, email };
   };
@@ -77,7 +77,7 @@ module.exports = (sequelize, DataTypes) => {
       return await User.scope('currentUser').findByPk(user.id);
     }
   };
-  
+
   User.signup = async function ({ username, email, password }) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({
@@ -87,7 +87,7 @@ module.exports = (sequelize, DataTypes) => {
     });
     return await User.scope('currentUser').findByPk(user.id);
   };
-  
+
 
   return User;
 };
