@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
+import Sidebar from "./components/Sidebar";
 import * as sessionActions from "./store/session";
-import Navigation from "./components/Navigation";
 import './index.css'
 
 function App() {
@@ -15,8 +15,8 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div>
-      <Navigation isLoaded={isLoaded} />
+    <div className='main-container'>
+      <Sidebar isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route path="/login">
@@ -27,7 +27,6 @@ function App() {
           </Route>
         </Switch>
       )}
-
     </div>
   );
 }
