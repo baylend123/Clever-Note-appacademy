@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import noteBooksReducer from './notebook'
+import notesReducer from './notes'
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  notebooks: noteBooksReducer
+  notebooks: noteBooksReducer,
+  notes: notesReducer
 });
 
 let enhancer;

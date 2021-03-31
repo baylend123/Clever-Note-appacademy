@@ -6,11 +6,13 @@ const { requireAuth } = require('../../utils/auth.js');
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const noteBookRouter = require('./notebooks.js')
+const notesRouter = require('./notes.js')
 
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
 router.use('/notebooks', noteBookRouter);
+router.use('/notes', notesRouter);
 
 
 router.post('/test', function (req, res) {
