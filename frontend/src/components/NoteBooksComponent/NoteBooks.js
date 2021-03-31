@@ -1,5 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+
 
 
 import './NoteBooks.css'
@@ -7,18 +9,46 @@ import { getNoteBooks } from '../../store/notebook'
 
 
 const NoteBooksComponent = () => {
+    const [showMenu, setShowMenu] = useState(false)
     const dispatch = useDispatch()
-    let userState = useSelector(state => state.session.user);
-
+    let notebooks = useSelector(state => state?.notebooks)
 
     useEffect(() => {
-        dispatch(getNoteBooks(userState.id))
-    })
+        dispatch(getNoteBooks())
+
+    }, [dispatch])
+    const openMenu = () => {
+
+        setShowMenu(prevState => !prevState)
+    }
+
+
 
     return (
-        <div className="note-books-container">
-            <h1>NoteBooksComponent</h1>
-        </div>
+        <>
+            <div onClick={openMenu} className='notebooks-menu-button'>
+                <p> Notebooks</p>
+            </div>
+            {  showMenu && (
+
+
+
+                <div className="note-books-container">
+
+                    {notebooks?.notebooks?.map(notebook => {
+                        return (
+                            <div className='book' key={notebook}>
+                                <Link style={{ textDecoration: 'none' }}
+                                    to={`/notebook/${notebook.id}`}
+                                >
+                                    {notebook.title}
+                                </Link>
+                            </div>
+                        )
+                    })}
+                </div>
+            )}
+        </>
     )
 }
 export default NoteBooksComponent

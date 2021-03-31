@@ -28,6 +28,9 @@ function App() {
           <Route path="/new-notebook">
             <h1>New Notebook</h1>
           </Route>
+          <Route path="/notebook/:id">
+            <NoteComponent />
+          </Route>
         </Switch>
       )}
     </div>

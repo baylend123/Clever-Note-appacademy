@@ -11,29 +11,34 @@ const loadNoteBook = (notebooks) => {
     }
 }
 
-export const getNoteBooks = (userId) => async dispatch => {
+export const getNoteBooks = () => async dispatch => {
 
-
-    console.log('thunk')
-    const id = userId.toString();
-    const result = await csrfFetch(`/api/notebooks/${id}`)
+    const result = await csrfFetch(`/api/notebooks/`)
     if (result.status === 200) {
         console.log('OK')
-        dispatch(loadNoteBook(result))
+        const notebooks = await result.json()
+
+        dispatch(loadNoteBook(notebooks.fatTrimmedNoteBooks))
+
     }
 
 
 
 }
 
-const notebooksReducer = (state = {}, action) => {
-    switch (action) {
+const initialState = { notebooks: null }
+const noteBooksReducer = (state = initialState, action) => {
+
+    let newState;
+    switch (action.type) {
         case LOADNOTEBOOK:
-            return { ...state, notebooks: action.payload }
+            newState = Object.assign({}, state);
+            newState.notebooks = action.payload
+            return newState
         default:
             return state
 
     }
 }
-export default notebooksReducer
+export default noteBooksReducer
 
