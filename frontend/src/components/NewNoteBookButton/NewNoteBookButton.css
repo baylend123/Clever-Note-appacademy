@@ -6,6 +6,8 @@
 @import url('https://css.gg/add-r.css');
 
 .btn-1 {
+  display: flex;
+  justify-content: space-around;
   
     background: linear-gradient(to right, lightblue, lightyellow);
 

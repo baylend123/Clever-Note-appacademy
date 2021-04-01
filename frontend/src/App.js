@@ -5,6 +5,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import Sidebar from "./components/Sidebar";
 import NoteComponent from "./components/NoteComponent";
+import NewNoteBookForm from "./components/NewNoteBookForm";
 import * as sessionActions from "./store/session";
 import './index.css'
 
@@ -27,7 +28,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/new-notebook">
-            <h1>New Notebook</h1>
+            <NewNoteBookForm />
           </Route>
           <Route path="/notebook/:id">
             <NoteComponent />

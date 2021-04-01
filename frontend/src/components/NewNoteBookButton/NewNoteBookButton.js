@@ -9,7 +9,7 @@ const NewNoteBookButton = () => {
     if (userState) {
         newNoteBookButton = <Link to="/new-notebook" >
 
-            <button className="btn-1"> <i class="gg-add-r"></i>  <span>New Notebook</span></button >
+            <button className="btn-1"> <i align="center" className="gg-add-r"></i>  <div>New Notebook</div></button >
         </Link >
 
 

@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 
-.main2 {
+.main {
   background-color: lightyellow;
   width: 400px;
-  min-height: 700px;
+  min-height: 600px;
   height: auto;
   margin: 7em auto;
   border-radius: 1.5em;
@@ -12,7 +12,7 @@
 }
 
 .sign {
-  padding-top: 20px;
+  padding-top: 40px;
   color: black;
   font-family: "Lobster", cursive;
   font-weight: bold;
@@ -39,7 +39,7 @@
   font-family: "Lobster", cursive;
 }
 
-form.form2 {
+form.form1 {
   padding-top: 40px;
 }
 

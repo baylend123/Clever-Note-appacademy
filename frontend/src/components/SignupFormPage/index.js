@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import './SignupForm.css';
+import "./SignupForm.css";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -19,21 +19,30 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password }))
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-        });
+      return dispatch(
+        sessionActions.signup({ email, username, password })
+      ).catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
     }
-    return setErrors(['Confirm Password field must be the same as the Password field']);
+    return setErrors([
+      "Confirm Password field must be the same as the Password field",
+    ]);
   };
 
   return (
     <div className="main">
-      <h1 className="sign" align="center">Sign Up Below</h1>
+      <h1 className="sign" align="center">
+        Sign Up Below
+      </h1>
       <form onSubmit={handleSubmit} className="form1">
         <ul>
-          {errors.map((error, idx) => <p className="sign" key={idx}>{error}</p>)}
+          {errors.map((error, idx) => (
+            <p className="sign" key={idx}>
+              {error}
+            </p>
+          ))}
         </ul>
 
         <input
@@ -45,7 +54,6 @@ function SignupFormPage() {
           placeholder="Email"
         />
 
-
         <input
           type="text"
           value={username}
@@ -54,7 +62,6 @@ function SignupFormPage() {
           className="un"
           placeholder="Username"
         />
-
 
         <input
           type="password"
@@ -65,7 +72,6 @@ function SignupFormPage() {
           placeholder="Password"
         />
 
-
         <input
           type="password"
           value={confirmPassword}
@@ -75,10 +81,7 @@ function SignupFormPage() {
           placeholder="Confirm Password"
         />
 
-        <button
-          className="submit"
-          type="submit"
-        >
+        <button className="submit" type="submit">
           Sign Up
         </button>
       </form>
