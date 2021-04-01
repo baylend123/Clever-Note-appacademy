@@ -16,7 +16,7 @@ const NoteBooksComponent = () => {
   const openMenu = () => {
     setShowMenu((prevState) => !prevState);
   };
-  console.log(notebooks);
+  console.log(notebooks.notebooks);
   return (
     <>
       <div onClick={openMenu} className="notebooks-menu-button">
@@ -24,19 +24,18 @@ const NoteBooksComponent = () => {
       </div>
       {showMenu && (
         <div className="note-books-container">
-          {notebooks &&
-            notebooks.notebooks.map((notebook) => {
-              return (
-                <div className="book" key={notebook.id}>
-                  <Link
-                    style={{ textDecoration: "none" }}
-                    to={`/notebook/${notebook.id}`}
-                  >
-                    {notebook.title}
-                  </Link>
-                </div>
-              );
-            })}
+          {notebooks.notebooks?.map((notebook) => {
+            return (
+              <div className="book" key={notebook.id}>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={`/notebook/${notebook.id}`}
+                >
+                  {notebook.title}
+                </Link>
+              </div>
+            );
+          })}
         </div>
       )}
     </>
