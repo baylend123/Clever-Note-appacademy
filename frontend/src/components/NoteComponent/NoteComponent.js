@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 
 import { getNotes } from '../../store/notes.js'
+import WriteNote from '../WriteNote'
 import './NoteComponent.css'
 
 
@@ -17,18 +18,11 @@ const NoteComponent = () => {
     }, [dispatch])
 
 
-    //         < WriteNote note = {{ }
-    // } />
+    //         < WriteNote note = {{ }} />
     //     < WriteNote note = { notes.notes } />
     return (
         <>
-            <Route path="/notebook/:id/new-note">
-
-            </Route >
-            <Route path="/notebook/:id/note/:id">
-
-            </Route>
-            <div className="notes-container">
+            <div className="notes-container two">
                 <Link to={`/notebook/${id}/new-note`}>
                     <div className="note">
                         <div className='note-content'>
@@ -51,6 +45,12 @@ const NoteComponent = () => {
                     )
                 })}
             </div>
+            <Route path="/notebook/:id/new-note">
+                < WriteNote note={[]} />
+            </Route >
+            <Route path="/notebook/:id/note/:noteId">
+                < WriteNote note={notes?.notes} />
+            </Route>
         </>
     )
 }

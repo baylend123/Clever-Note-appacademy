@@ -9,7 +9,7 @@ const Sidebar = ({ isLoaded }) => {
 
 
     return (
-        <div className='container'>
+        <div className='one container'>
             <Navigation isLoaded={isLoaded} />
             <HeaderComponent />
             <NewNoteBookButton />
