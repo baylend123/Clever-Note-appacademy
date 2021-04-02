@@ -14,7 +14,7 @@ const NoteComponent = () => {
 
   useEffect(() => {
     dispatch(getNotes(id));
-  }, [id, dispatch]);
+  }, [id, notes.notes]);
 
   //         < WriteNote note = {{ }} />
   //     < WriteNote note = { notes.notes } />
@@ -28,8 +28,9 @@ const NoteComponent = () => {
             </div>
           </div>
         </Link>
-        {notes.notes?.map((note) => {
-          const preview = note.body.slice(0, 10);
+        {notes?.notes?.map((note) => {
+          console.log(note?.body)
+          const preview = note?.body?.slice(0, 10);
           return (
             <Link to={`/notebook/${id}/note/${note.id}`}>
               <div className="note" key={note}>

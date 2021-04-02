@@ -1,29 +1,51 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import parse from "html-react-parser";
 
-import { saveNotes } from "../../store/notes";
+import { saveNotes, newNote } from "../../store/notes";
 
 import "./WriteNote.css";
 
 const WriteNote = ({ note }) => {
+  console.log(note);
+  const history = useHistory();
   const dispatch = useDispatch();
   const { noteId, id } = useParams();
   const noteBookId = parseInt(id, 10);
-
   let focusNote = "";
-  if (note?.length) {
-    focusNote = note.find((note) => note.id.toString() === noteId);
-  }
+ // const assignmentFunc = () => {
+    if (note?.length) {
+      focusNote = note.find((note) => note.id.toString() === noteId);
+    }
+  //};
+  useEffect(() => {
+   console.log()
+   const pathname = history.location.pathname.split("/");
+   const endOfPath = pathname[pathname.length - 1]
+   console.log(endOfPath);
+    if(endOfPath !== 'new-note'){
+
+      setText(focusNote.body)
+    }
+    return () => {
+      //handleSave()
+    }
+    
+  },[history.location.pathname]);
 
   const [text, setText] = useState(focusNote.body);
 
   const handleSave = () => {
-    console.log(noteId);
-    dispatch(saveNotes(text, noteBookId, noteId));
+    console.log(history.location.pathname);
+    if (noteId) {
+      dispatch(saveNotes(text, noteBookId, noteId));
+    } else {
+      dispatch(newNote(text, noteBookId));
+    }
+   
   };
 
   return (
@@ -32,7 +54,9 @@ const WriteNote = ({ note }) => {
       <CKEditor
         editor={ClassicEditor}
         data={text}
+        
         onChange={(e, editor) => {
+          
           const data = editor.getData();
           setText(data);
           console.log(text);

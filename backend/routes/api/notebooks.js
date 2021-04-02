@@ -35,7 +35,7 @@ router.post(
       tags: tag,
     });
     await newNoteBook.save();
-    res.send(newNoteBook.dataValues);
+    res.json(newNoteBook);
   })
 );
 

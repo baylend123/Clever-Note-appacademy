@@ -2,7 +2,16 @@ import { csrfFetch } from "./csrf";
 
 const LOADNOTEBOOK = "notebook/LOAD";
 const ADDNEWNOTEBOOK = "notebook/ADD";
+const LOGOUT = 'notebook/Logout'
 
+
+
+const logout = (notebooks) => {
+  return {
+    type: LOGOUT,
+    
+  };
+}
 const loadNoteBook = (notebooks) => {
   return {
     type: LOADNOTEBOOK,
@@ -38,6 +47,9 @@ export const addNoteBook = (notebook) => async (dispatch) => {
   console.log(newNoteBook);
   dispatch(addNewNoteBook(newNoteBook));
 };
+export const logoutNotebook =() => async (dispatch) =>{
+  dispatch(logout())
+}
 
 const initialState = { notebooks: null };
 const noteBooksReducer = (state = initialState, action) => {
@@ -51,6 +63,10 @@ const noteBooksReducer = (state = initialState, action) => {
     case ADDNEWNOTEBOOK:
       newState = Object.assign({}, state);
       newState.notebooks.push(action.payload);
+      return newState;
+    case LOGOUT:
+      newState = Object.assign({}, state);
+      newState.notebooks = []
       return newState;
     default:
       return state;

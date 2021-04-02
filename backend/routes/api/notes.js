@@ -33,4 +33,18 @@ router.post(
     }
   })
 );
+
+router.post(
+  "/new",
+  asyncHandler(async (req, res) => {
+    const { note, noteBookId } = req.body;
+    const newNote = await db.Note.create({
+      noteBookId: noteBookId,
+      body: note,
+    });
+    console.log(newNote);
+
+    res.json(newNote);
+  })
+);
 module.exports = router;

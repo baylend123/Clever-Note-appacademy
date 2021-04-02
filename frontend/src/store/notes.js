@@ -2,6 +2,14 @@ import { csrfFetch } from "./csrf";
 
 const notesLoader = "notes/load";
 const noteSaver = "notes/save";
+const LOGOUT = 'note/Logout'
+const logout = () => {
+  return {
+    type: LOGOUT,
+    
+  };
+}
+
 
 const loadNotes = (notes) => {
   return {
@@ -15,7 +23,9 @@ const saveNote = (note) => {
     payload: note,
   };
 };
-
+export const logoutNote =() => async (dispatch) =>{
+  dispatch(logout())
+}
 export const saveNotes = (note, noteBookId, noteId) => async (dispatch) => {
   const body = { note, noteBookId, noteId };
   console.log(body);
@@ -31,6 +41,19 @@ export const saveNotes = (note, noteBookId, noteId) => async (dispatch) => {
     console.log(savedNote);
     dispatch(saveNote(savedNote));
   }
+};
+export const newNote = (note, noteBookId) => async (dispatch) => {
+  const body = { note, noteBookId };
+  const result = await csrfFetch("/api/notes/new", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  const newNote = result.json();
+
+  dispatch(saveNote(newNote));
 };
 
 export const getNotes = (noteBookId) => async (dispatch) => {
@@ -55,6 +78,10 @@ const notesReducer = (state = initialState, action) => {
     case noteSaver:
       newState = Object.assign({}, state);
       newState.notes.push(action.payload);
+      return newState;
+    case LOGOUT:
+      newState = Object.assign({}, state);
+      newState.notes = []
       return newState;
     default:
       return state;
