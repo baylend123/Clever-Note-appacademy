@@ -11,6 +11,7 @@ router.get(
       where: {
         noteBookId: id,
       },
+      order : [['createdAt', 'DESC']]
     }).map((note) => note.dataValues);
     res.json(notes);
   })

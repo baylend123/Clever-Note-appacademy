@@ -1,6 +1,8 @@
 import { useParams, Link, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { parse } from 'node-html-parser';
+
 
 import { getNotes } from "../../store/notes.js";
 import WriteNote from "../WriteNote";
@@ -11,10 +13,13 @@ const NoteComponent = () => {
 
   const { id } = useParams();
   const notes = useSelector((state) => state?.notes);
+  const clicked = () => {
+return 
+  }
 
   useEffect(() => {
     dispatch(getNotes(id));
-  }, [id, notes.notes]);
+  }, [id, notes?.notes?.length ])
 
   //         < WriteNote note = {{ }} />
   //     < WriteNote note = { notes.notes } />
@@ -29,16 +34,22 @@ const NoteComponent = () => {
           </div>
         </Link>
         {notes?.notes?.map((note) => {
-          console.log(note?.body)
-          const preview = note?.body?.slice(0, 10);
-          return (
-            <Link to={`/notebook/${id}/note/${note.id}`}>
-              <div className="note" key={note}>
-                <div className="note-content">{preview + `. . .`}</div>
-              </div>
-            </Link>
-          );
-        })}
+        if(note.body !== undefined){
+
+          
+           const previewSplit = parse(note?.body ? note.body : '');
+           const realPreview = previewSplit.childNodes[0].childNodes[0].rawText
+           const actualRealPreview = realPreview.slice(0,20)
+           return (
+             <Link to={`/notebook/${id}/note/${note.id}`} onLoad={clicked}>
+             <div className="note" key={note}>
+             <div className="note-content">{ actualRealPreview + `. . .`}</div>
+             </div>
+             </Link>
+             );
+            }
+            return null
+          })}
       </div>
       <Route path="/notebook/:id/new-note">
         <WriteNote note={[]} />

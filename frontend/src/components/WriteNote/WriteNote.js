@@ -6,26 +6,29 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import parse from "html-react-parser";
 
 import { saveNotes, newNote } from "../../store/notes";
+import { getNotes } from "../../store/notes.js";
 
 import "./WriteNote.css";
 
 const WriteNote = ({ note }) => {
-  console.log(note);
+  
   const history = useHistory();
   const dispatch = useDispatch();
   const { noteId, id } = useParams();
   const noteBookId = parseInt(id, 10);
   let focusNote = "";
  // const assignmentFunc = () => {
-    if (note?.length) {
-      focusNote = note.find((note) => note.id.toString() === noteId);
+ console.log('-=---0-0932-04932-049023', note)   
+ if (note?.length) {
+      
+      focusNote = note?.find((note) => note?.id.toString() === noteId);
     }
   //};
   useEffect(() => {
-   console.log()
+
    const pathname = history.location.pathname.split("/");
    const endOfPath = pathname[pathname.length - 1]
-   console.log(endOfPath);
+  
     if(endOfPath !== 'new-note'){
 
       setText(focusNote.body)
@@ -35,11 +38,11 @@ const WriteNote = ({ note }) => {
     }
     
   },[history.location.pathname]);
-
+  
   const [text, setText] = useState(focusNote.body);
-
+  
   const handleSave = () => {
-    console.log(history.location.pathname);
+    
     if (noteId) {
       dispatch(saveNotes(text, noteBookId, noteId));
     } else {
@@ -47,10 +50,12 @@ const WriteNote = ({ note }) => {
     }
    
   };
-
+ 
   return (
     <div className="note-container">
       <button onClick={handleSave}>save</button>
+      <button className="email"><i class="gg-mail-open"></i></button>
+                <button className="delete">x</button>
       <CKEditor
         editor={ClassicEditor}
         data={text}
@@ -59,7 +64,7 @@ const WriteNote = ({ note }) => {
           
           const data = editor.getData();
           setText(data);
-          console.log(text);
+          
         }}
       />
     </div>

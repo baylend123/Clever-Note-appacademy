@@ -16,7 +16,7 @@ const NoteBooksComponent = () => {
   const openMenu = () => {
     setShowMenu((prevState) => !prevState);
   };
-  console.log(notebooks.notebooks);
+
   return (
     <>
       <div onClick={openMenu} className="notebooks-menu-button">
@@ -33,6 +33,10 @@ const NoteBooksComponent = () => {
                 >
                   {notebook.title}
                 </Link>
+                <div className='button-container'>
+                <button className="email"><i class="gg-mail-open"></i></button>
+                <button className="delete">x</button>
+                </div>
               </div>
             );
           })}

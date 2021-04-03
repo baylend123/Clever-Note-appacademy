@@ -28,14 +28,14 @@ const addNewNoteBook = (notebook) => {
 export const getNoteBooks = () => async (dispatch) => {
   const result = await csrfFetch(`/api/notebooks/`);
   if (result.status === 200) {
-    console.log("OK");
+    
     const notebooks = await result.json();
 
     dispatch(loadNoteBook(notebooks.fatTrimmedNoteBooks));
   }
 };
 export const addNoteBook = (notebook) => async (dispatch) => {
-  console.log(notebook);
+
   const result = await csrfFetch(`/api/notebooks/new`, {
     method: "POST",
     headers: {
@@ -44,7 +44,7 @@ export const addNoteBook = (notebook) => async (dispatch) => {
     body: JSON.stringify(notebook),
   });
   const newNoteBook = await result.json();
-  console.log(newNoteBook);
+  
   dispatch(addNewNoteBook(newNoteBook));
 };
 export const logoutNotebook =() => async (dispatch) =>{

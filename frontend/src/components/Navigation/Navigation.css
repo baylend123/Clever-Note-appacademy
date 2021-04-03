@@ -1,53 +1,53 @@
-
-@import url('https://css.gg/profile.css');
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-.nav-bar{
-    display: flex;
-    justify-content: space-between;
-    border: 2px solid lightyellow;
-    padding: 10px;
-    border-radius: 1.0em;
-    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-    background: linear-gradient(to right, lightblue, lightyellow);
+@import url("https://css.gg/profile.css");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid lightyellow;
+  padding: 10px;
+  border-radius: 1em;
+  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+  background: linear-gradient(to right, lightblue, lightyellow);
 }
-.nav-button{
-    color: black;
-    font-family: 'Lobster', cursive;
-}
-
-.drop{ 
-    display:flex;
-    flex-direction: column;
-    overflow: hidden;
-    list-style: none;
-    position: absolute;
-    padding: 0;
-    width: 100%;
-    left: 0;
-    top: 48px;
+.nav-button {
+  color: black;
+  font-family: "Lobster", cursive;
 }
 
- .drop-item{
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-left: 20%;
-    margin-top: 1%;
-    width: 8%;
-    background-color: lightyellow;
-    font-family: 'Lobster', cursive;
-    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-    padding: 10px;
-    border-radius: 1.5em;
-} 
+.drop {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  list-style: none;
+  position: absolute;
+  padding: 0;
+  width: 100%;
+  left: 0;
+  top: 48px;
+  z-index: 99999;
+}
+
+.drop-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20%;
+  margin-top: 1%;
+  width: 8%;
+  background-color: lightyellow;
+  font-family: "Lobster", cursive;
+  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+  padding: 10px;
+  border-radius: 1.5em;
+}
 .logout {
-      cursor: pointer;
-        border-radius: 5em;
-        color:black;
-        background: linear-gradient(to right, lightblue, lightyellow);
-        border: 0;
-        font-family: 'Lobster', cursive;
+  cursor: pointer;
+  border-radius: 5em;
+  color: black;
+  background: linear-gradient(to right, lightblue, lightyellow);
+  border: 0;
+  font-family: "Lobster", cursive;
 
-        font-size: 13px;
-        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
-    }
+  font-size: 13px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}

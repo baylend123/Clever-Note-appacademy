@@ -28,7 +28,7 @@ export const logoutNote =() => async (dispatch) =>{
 }
 export const saveNotes = (note, noteBookId, noteId) => async (dispatch) => {
   const body = { note, noteBookId, noteId };
-  console.log(body);
+
   const result = await csrfFetch("/api/notes/save", {
     method: "POST",
     headers: {
@@ -38,7 +38,7 @@ export const saveNotes = (note, noteBookId, noteId) => async (dispatch) => {
   });
   if (result.status === 200) {
     const savedNote = result.json();
-    console.log(savedNote);
+
     dispatch(saveNote(savedNote));
   }
 };
