@@ -64,8 +64,29 @@ const requireAuth = [
   },
 ];
 
+const getCurrentUserId = (req) => {
+  const { token } = req.cookies;
+  return jwt.verify(token, secret, null, async (err, jwtPayload) => {
+    if (err) {
+      return false;
+    }
+    const { id } = jwtPayload.data;
+    console.log(jwtPayload.data)
+    return id;
+  });
+};
+const getCurrentUserEmail = (req) => {
+  const { token } = req.cookies;
+  return jwt.verify(token, secret, null, async (err, jwtPayload) => {
+    if (err) {
+      return false;
+    }
+    const { email } = jwtPayload.data;
+    console.log(jwtPayload.data)
+    return email;
+  });
+};
 
-
-module.exports = { setTokenCookie, restoreUser, requireAuth };
+module.exports = { setTokenCookie, restoreUser, requireAuth, getCurrentUserId, getCurrentUserEmail };
 
 

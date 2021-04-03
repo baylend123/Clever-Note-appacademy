@@ -2,6 +2,32 @@ const express = require("express");
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
 const db = require("../../db/models");
+require('dotenv').config()
+
+const cors = require("cors")
+
+const { getCurrentUserEmail } = require('../../utils/auth')
+
+
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
+
+router.post('/send-mail', cors(), asyncHandler(async (req, res) => {
+  const { text } = req.body
+  const email = await getCurrentUserEmail(req)
+  console.log(email)
+  const msg = {
+    to: `${email}`,
+    from: 'baylendoss12@gmail.com',
+    subject: 'Clever-Note',
+    html: `${text}`
+  }
+  const message = await sgMail.send(msg)
+  console.log(message)
+
+
+}))
 
 router.get(
   "/:id",
@@ -11,7 +37,7 @@ router.get(
       where: {
         noteBookId: id,
       },
-      order : [['createdAt', 'DESC']]
+      order: [['createdAt', 'DESC']]
     }).map((note) => note.dataValues);
     res.json(notes);
   })
@@ -48,4 +74,13 @@ router.post(
     res.json(newNote);
   })
 );
+router.post('/delete', asyncHandler(async (req, res) => {
+  const id = req.body.id
+  await db.Note.destroy({
+    where: {
+      id: id
+    },
+  })
+  res.status(200)
+}))
 module.exports = router;
