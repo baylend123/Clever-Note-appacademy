@@ -31,8 +31,11 @@ router.post('/send-mail', cors(), asyncHandler(async (req, res) => {
 
 router.get(
   "/:id",
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req, res, next) => {
     const id = parseInt(req.params.id, 10);
+    if (req.params.id === 'undefined') {
+      next()
+    }
     const notes = await db.Note.findAll({
       where: {
         noteBookId: id,

@@ -3,10 +3,11 @@ import { csrfFetch } from "./csrf";
 const notesLoader = "notes/load";
 const noteSaver = "notes/save";
 const LOGOUT = 'note/Logout'
+const DELETE = 'note/Delete'
 const logout = () => {
   return {
     type: LOGOUT,
-    
+
   };
 }
 
@@ -23,7 +24,16 @@ const saveNote = (note) => {
     payload: note,
   };
 };
-export const logoutNote =() => async (dispatch) =>{
+
+const noteDelete = (id) => {
+  return {
+    type: DELETE,
+    payload: id
+  }
+}
+
+
+export const logoutNote = () => async (dispatch) => {
   dispatch(logout())
 }
 export const saveNotes = (note, noteBookId, noteId) => async (dispatch) => {
@@ -36,8 +46,8 @@ export const saveNotes = (note, noteBookId, noteId) => async (dispatch) => {
     },
     body: JSON.stringify(body),
   });
+  const savedNote = result.json();
   if (result.status === 200) {
-    const savedNote = result.json();
 
     dispatch(saveNote(savedNote));
   }
@@ -51,9 +61,12 @@ export const newNote = (note, noteBookId) => async (dispatch) => {
     },
     body: JSON.stringify(body),
   });
-  const newNote = result.json();
+  const newNote = await result.json();
+
+
 
   dispatch(saveNote(newNote));
+  return newNote.id;
 };
 
 export const getNotes = (noteBookId) => async (dispatch) => {
@@ -64,6 +77,17 @@ export const getNotes = (noteBookId) => async (dispatch) => {
     dispatch(loadNotes(notes));
   }
 };
+
+export const deleteNote = (id) => async (dispatch) => {
+  await csrfFetch("/api/notes/delete", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ id: id })
+  })
+  dispatch(noteDelete(id));
+}
 const initialState = {
   notes: null,
 };
@@ -82,6 +106,10 @@ const notesReducer = (state = initialState, action) => {
     case LOGOUT:
       newState = Object.assign({}, state);
       newState.notes = []
+      return newState;
+    case DELETE:
+      newState = Object.assign({}, state);
+      newState = newState.notes.filter(note => note.id !== action.payload)
       return newState;
     default:
       return state;

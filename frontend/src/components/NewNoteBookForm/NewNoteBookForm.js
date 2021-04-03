@@ -9,14 +9,15 @@ const NewNoteBookForm = () => {
   const [title, setTitle] = useState("");
   const [tag, setTag] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const noteBook = {
       title,
       tag,
     };
-    dispatch(addNoteBook(noteBook));
-    history.push("/");
+    const newNoteBookId = await dispatch(addNoteBook(noteBook));
+    console.log(newNoteBookId);
+    history.push(`/notebook/${newNoteBookId}/new-note`);
   };
 
   return (

@@ -29,7 +29,7 @@ router.get(
 router.post(
   "/new",
   asyncHandler(async (req, res) => {
-    const userId = parseInt(req.cookies.user, 10);
+    const userId = await getCurrentUserId(req)
     const { title, tag } = req.body;
     const newNoteBook = await db.Notebook.build({
       userId: userId,
