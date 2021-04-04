@@ -39,8 +39,14 @@ const NoteComponent = () => {
 
 
             const previewSplit = parse(note?.body ? note.body : '');
-            const realPreview = previewSplit.childNodes[0].childNodes[0].rawText
-            const actualRealPreview = realPreview.slice(0, 20)
+            const realPreview = previewSplit.childNodes[0].childNodes[0]?.rawText
+            let actualRealPreview
+            if (!realPreview) {
+              actualRealPreview = note?.body?.slice(0, 20)
+            } else {
+
+              actualRealPreview = realPreview.slice(0, 20)
+            }
             return (
               <Link to={`/notebook/${id}/note/${note.id}`} onLoad={clicked}>
                 <div className="note" key={note}>

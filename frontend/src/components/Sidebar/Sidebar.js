@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 
 import { ReactPainter } from 'react-painter';
-import ReactStickies from 'react-stickies';
+
 import Navigation from '../Navigation'
 import HeaderComponent from '../HeaderComponent'
 import NoteBooksComponent from '../NoteBooksComponent'
@@ -40,8 +40,7 @@ const Sidebar = ({ isLoaded }) => {
 
 
             {paint}
-            <ReactStickies
-            />
+
         </div>
 
     )
