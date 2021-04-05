@@ -38,7 +38,7 @@ function App() {
 
   const demoUser = () => {
     dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))
-    history.push(`/notebook/${numby}/note/new-note`)
+    history.push(`/notebook/${numby}/new-note`)
   }
   return (
     <div className='main-container'>
