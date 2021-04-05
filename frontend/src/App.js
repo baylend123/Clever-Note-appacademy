@@ -64,7 +64,7 @@ function App() {
       {!user &&
         <>
           <div className='two'>
-            <img src="/images/CleverNote.png"></img>
+            <img src='https://i.ibb.co/h2YN9vv/Clever-Note-1.png'></img>
             <h1 className='DemoUserHeader' align='center'>Click Here to Log In As Demo-User</h1>
             <div align='right'>
               <button onClick={demoUser} align='right' className="DemoUserButton">Demo User</button>
