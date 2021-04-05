@@ -6,6 +6,8 @@ import Navigation from '../Navigation'
 import HeaderComponent from '../HeaderComponent'
 import NoteBooksComponent from '../NoteBooksComponent'
 import NewNoteBookButton from '../NewNoteBookButton'
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import './Sidebar.css'
 
 
@@ -16,7 +18,7 @@ const Sidebar = ({ isLoaded }) => {
     if (!user) {
         paint =
             <div>
-                <h1>Draw Something</h1>
+                <h1 className='sidebarNotLoggedIn'>Make A Doodle Below</h1>
                 <ReactPainter
                     width={500}
                     height={400}
@@ -29,6 +31,11 @@ const Sidebar = ({ isLoaded }) => {
                         </div>
                     )}
                 />
+                <div className="editor">
+                    <h1 className='sidebarNotLoggedIn'>Scratch Pad</h1>
+                    <textarea className="editor">
+                    </textarea>
+                </div>
             </div>
     }
     return (

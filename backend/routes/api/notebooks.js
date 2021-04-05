@@ -15,6 +15,7 @@ router.get(
       where: {
         userId: id,
       },
+      order: [['createdAt', 'DESC']]
     });
     const fatTrimmedNoteBooks = noteBooks.map(
       (notebook) => notebook.dataValues

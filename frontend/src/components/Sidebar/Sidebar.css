@@ -5,3 +5,12 @@
 .painter{
     border: 1px solid black
 }
+.editor{
+    width:600px;
+    height: 300px
+}
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
+.sidebarNotLoggedIn{
+font-family: "Lobster", cursive;
+}

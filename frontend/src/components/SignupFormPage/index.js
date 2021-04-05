@@ -32,7 +32,7 @@ function SignupFormPage() {
   };
 
   return (
-    <div className="main">
+    <div className="main three">
       <h1 className="sign" align="center">
         Sign Up Below
       </h1>

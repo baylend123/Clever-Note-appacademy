@@ -12,9 +12,7 @@ function LoginFormPage() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return (
-    <Redirect to="/notebook/1" />
-  );
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +25,7 @@ function LoginFormPage() {
   }
 
   return (
-    <div className="main" >
+    <div className="main three" >
       <h1 className="sign" align="center">Sign in below</h1>
       <form onSubmit={handleSubmit} className="form1" >
         <ul>
