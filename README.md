@@ -15,4 +15,8 @@
 # steps to clone and run the app
 
     * clone down the repo
+    * use the env.example for all of your database creation
     * cd into the backend 
+    * npm install npm start
+    * new terminal cd into frontend
+    * npm install npm start
