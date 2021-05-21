@@ -75,7 +75,7 @@ function App() {
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <div style={{ marginTop: '10px' }}>Baylen Doss</div>
                 <a style={{ marginTop: '10px' }} href="https://github.com/baylend123">GitHub</a>
-                <a style={{ marginTop: '10px' }} href='https://www.linkedin.com/in/baylen-doss-6899541bb/'>LinkdIn</a>
+                <a style={{ marginTop: '10px' }} href='https://www.linkedin.com/in/baylen-doss-6899541bb/'>LinkedIn</a>
               </div>
             </div>
 
