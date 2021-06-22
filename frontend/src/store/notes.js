@@ -46,7 +46,8 @@ export const saveNotes = (note, noteBookId, noteId) => async (dispatch) => {
     },
     body: JSON.stringify(body),
   });
-  const savedNote = result.json();
+  const savedNote = await result.json();
+  console.log(savedNote)
   if (result.status === 200) {
 
     dispatch(saveNote(savedNote));
@@ -101,7 +102,10 @@ const notesReducer = (state = initialState, action) => {
       return newState;
     case noteSaver:
       newState = Object.assign({}, state);
-      newState.notes.push(action.payload);
+      // newState.notes.push(action.payload);
+      newState.notes = newState.notes.filter(note => note.id !== action.payload.id)
+      newState.notes = [...newState.notes, action.payload]
+      newState.notes = [...newState.notes].sort((a,b)=> a.id - b.id) 
       return newState;
     case LOGOUT:
       newState = Object.assign({}, state);

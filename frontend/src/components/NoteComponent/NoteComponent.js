@@ -20,7 +20,10 @@ const NoteComponent = () => {
 
   useEffect(() => {
     dispatch(getNotes(id));
-  }, [getNotes, notes?.notes?.length, deleteNote, history.location.pathname])
+  }, [getNotes, deleteNote, history.location.pathname])
+  // useEffect(() => {
+  //   dispatch(getNotes(id));
+  // }, [getNotes, notes?.notes?.length, deleteNote, history.location.pathname])
 
   //         < WriteNote note = {{ }} />
   //     < WriteNote note = { notes.notes } />
@@ -48,7 +51,7 @@ const NoteComponent = () => {
               actualRealPreview = realPreview.slice(0, 20)
             }
             return (
-              <Link to={`/notebook/${id}/note/${note.id}`} onLoad={clicked}>
+              <Link key={note.id} to={`/notebook/${id}/note/${note.id}`} onLoad={clicked}>
                 <div className="note" key={note}>
                   <div className="note-content">{actualRealPreview + `. . .`}</div>
                 </div>
