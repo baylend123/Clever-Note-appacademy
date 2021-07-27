@@ -71,6 +71,9 @@ export const newNote = (note, noteBookId) => async (dispatch) => {
 };
 
 export const getNotes = (noteBookId) => async (dispatch) => {
+  if (noteBookId === 'all') {
+    const result = await csrfFetch('/api/notes/all')
+  }
   const result = await csrfFetch(`/api/notes/${noteBookId}`);
   if (result.status === 200) {
     const notes = await result.json();
@@ -105,7 +108,7 @@ const notesReducer = (state = initialState, action) => {
       // newState.notes.push(action.payload);
       newState.notes = newState.notes.filter(note => note.id !== action.payload.id)
       newState.notes = [...newState.notes, action.payload]
-      newState.notes = [...newState.notes].sort((a,b)=> a.id - b.id) 
+      newState.notes = [...newState.notes].sort((a, b) => a.id - b.id)
       return newState;
     case LOGOUT:
       newState = Object.assign({}, state);

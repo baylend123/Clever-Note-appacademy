@@ -32,17 +32,28 @@ router.post('/send-mail', cors(), asyncHandler(async (req, res) => {
 router.get(
   "/:id",
   asyncHandler(async (req, res, next) => {
-    const id = parseInt(req.params.id, 10);
-    if (req.params.id === 'undefined') {
-      next()
+    if (req.params.id === 'all') {
+      console.log(req.params.id)
+      const notes = await db.Note.findAll({
+        order: [['createdAt', 'DESC']]
+      }
+      ).map(note => note.dataValues)
+      res.json(notes)
+    } else {
+
+
+      const id = parseInt(req.params.id, 10);
+      if (req.params.id === 'undefined') {
+        next()
+      }
+      const notes = await db.Note.findAll({
+        where: {
+          noteBookId: id,
+        },
+        order: [['createdAt', 'DESC']]
+      }).map((note) => note.dataValues);
+      res.json(notes);
     }
-    const notes = await db.Note.findAll({
-      where: {
-        noteBookId: id,
-      },
-      order: [['createdAt', 'DESC']]
-    }).map((note) => note.dataValues);
-    res.json(notes);
   })
 );
 router.post(

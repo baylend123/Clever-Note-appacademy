@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import {logoutNotebook} from '../../store/notebook'
-import {logoutNote} from '../../store/notes'
+import { logoutNotebook } from '../../store/notebook'
+import { logoutNote } from '../../store/notes'
 import './Navigation.css'
 
 function ProfileButton({ user }) {
@@ -30,16 +30,14 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <div onMouseOver={openMenu} >
-        <i className="gg-profile"></i>
+      <div className="nav-user-info" onMouseOver={openMenu} >
+        <div className="nav-user-icon">{user.username[0]}</div><div className="nav-user-name"> {user.username}</div>
+
       </div>
       {showMenu && (
         <div className="drop">
           <div onMouseLeave={closeMenu}>
             <div className="drop-item">
-              <p align="center"> {user.username}</p>
-              <p align="center">{user.email}</p>
-
               <button align='center' className='logout' onClick={logout}>Log Out</button>
 
             </div>

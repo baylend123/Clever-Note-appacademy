@@ -23,9 +23,6 @@ function Navigation({ isLoaded }) {
 
   return (
     <nav className="nav-bar">
-      <NavLink exact to="/">
-        <i class="gg-notes"></i>
-      </NavLink>
       {isLoaded && sessionLinks}
     </nav>
 

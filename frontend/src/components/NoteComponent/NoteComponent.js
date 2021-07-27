@@ -19,7 +19,13 @@ const NoteComponent = () => {
   }
 
   useEffect(() => {
-    dispatch(getNotes(id));
+    console.log(history.location.pathname)
+    if (history.location.pathname !== '/') {
+
+      dispatch(getNotes(id));
+    } else {
+      dispatch(getNotes('all'))
+    }
   }, [getNotes, deleteNote, history.location.pathname])
   // useEffect(() => {
   //   dispatch(getNotes(id));
@@ -45,15 +51,15 @@ const NoteComponent = () => {
             const realPreview = previewSplit.childNodes[0].childNodes[0]?.rawText
             let actualRealPreview
             if (!realPreview) {
-              actualRealPreview = note?.body?.slice(0, 20)
+              actualRealPreview = note?.body?.slice(0, 1000)
             } else {
 
-              actualRealPreview = realPreview.slice(0, 20)
+              actualRealPreview = realPreview.slice(0, 1000)
             }
             return (
               <Link key={note.id} to={`/notebook/${id}/note/${note.id}`} onLoad={clicked}>
                 <div className="note" key={note}>
-                  <div className="note-content">{actualRealPreview + `. . .`}</div>
+                  <div className="note-content">{actualRealPreview}</div>
                 </div>
               </Link>
             );

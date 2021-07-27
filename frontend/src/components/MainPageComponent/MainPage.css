@@ -1,0 +1,44 @@
+.main-page{
+    margin-left: 400px;
+    height: 500px;
+    width: 80vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(../../images/Cool-office-desk.webp);
+}
+.main-welcome-message {
+    align-items: right;
+    text-shadow: 1px 1px black;
+    margin-top:40px;
+    margin-left: 220px;
+    color: white;
+    font-size: 40px;
+    display: flex;
+    flex-direction: column;
+    height: 100px
+}
+.main-page-note-holder{
+    margin-top: 300px;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 20px black;
+    border-radius: 20px;
+    margin-left: 40px;
+    overflow: none;
+    padding:20px;
+    width: 70vw;
+    height : 400px;
+    background-color: white;
+}
+.main-page-note-link{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    text-decoration: none;
+    color: grey;
+    font-size: 20px;
+}
+.note-bracket{
+    margin-left:10px;
+    
+    color: green;
+}

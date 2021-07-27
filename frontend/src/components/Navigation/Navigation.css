@@ -3,17 +3,35 @@
 .nav-bar {
   display: flex;
   justify-content: space-between;
-  border: 2px solid lightyellow;
-  padding: 10px;
-  border-radius: 1em;
-  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-  background: linear-gradient(to right, lightblue, lightyellow);
+  background-color: #1a1a1a;
+  color: #8f8f8f;
 }
 .nav-button {
   color: black;
-  font-family: "Lobster", cursive;
-}
 
+}
+.nav-user-info {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  margin-bottom: 20px;
+  
+}
+.nav-user-icon {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  background-color: green;
+  color: white;
+  border-radius: 20px;
+  line-height: 40px;
+  text-align: center;
+}
+.nav-user-name {
+  height: 40px;
+  width: 300px;
+  line-height: 40px;
+}
 .drop {
   display: flex;
   flex-direction: column;
@@ -35,7 +53,7 @@
   margin-top: 1%;
   width: 8%;
   background-color: lightyellow;
-  font-family: "Lobster", cursive;
+
   box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
   padding: 10px;
   border-radius: 1.5em;
@@ -46,7 +64,7 @@
   color: black;
   background: linear-gradient(to right, lightblue, lightyellow);
   border: 0;
-  font-family: "Lobster", cursive;
+
 
   font-size: 13px;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);

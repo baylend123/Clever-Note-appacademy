@@ -10,11 +10,9 @@
   overflow-y: scroll;
 }
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
-.active {
-  box-shadow: 0 1px;
-}
+
 .notebooks-menu-button {
-  font-family: "Lobster", cursive;
+
   cursor: pointer;
   margin-top: 5px;
   display: flex;
@@ -30,7 +28,7 @@
   flex-direction: column;
   margin: 10px;
   text-align: center;
-  font-family: "Lobster", cursive;
+
   cursor: pointer;
   background: #fff;
   width: 10%;
@@ -73,7 +71,7 @@
   color: red;
   font-weight: 300;
   font-size: 30px;
-  font-family: "Lobster", cursive;
+
   background: none;
   border: none;
 }

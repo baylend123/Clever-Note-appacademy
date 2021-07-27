@@ -1,6 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 .head{
-    font-family: 'Lobster', cursive;
   
+  
+}
+.search-bar{
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    width: 90%;
+    border-radius:20px;
+    margin-left: 2%;
+    background-color:#8f8f8f;
+    margin-bottom: 10px;
+}
+.search-icon{
+    padding: 10px;
+}
+.search{
+    font-size: 20px;
+    color:white;
+    background:none;
+    border: none;
+    outline: none;
 }

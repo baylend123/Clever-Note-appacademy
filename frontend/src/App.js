@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import Sidebar from "./components/Sidebar";
 import NoteComponent from "./components/NoteComponent";
 import NewNoteBookForm from "./components/NewNoteBookForm";
+import MainPageComponent from "./components/MainPageComponent";
 import github from './images/download.png'
 
 import * as sessionActions from "./store/session";
@@ -46,6 +47,9 @@ function App() {
       <Sidebar isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/" exact>
+            <MainPageComponent />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
