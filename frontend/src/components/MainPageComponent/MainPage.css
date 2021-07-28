@@ -1,5 +1,5 @@
 .main-page{
-    margin-left: 400px;
+    margin-left: 20vw;
     height: 500px;
     width: 80vw;
     background-repeat: no-repeat;
@@ -18,11 +18,11 @@
     height: 100px
 }
 .main-page-note-holder{
-    margin-top: 300px;
-    margin-bottom: 10px;
+    margin-top: 30vh;
+    margin-bottom: 2vh;
     box-shadow: 2px 2px 20px black;
     border-radius: 20px;
-    margin-left: 40px;
+    margin-left: 9vh;
     overflow: none;
     padding:20px;
     width: 70vw;
