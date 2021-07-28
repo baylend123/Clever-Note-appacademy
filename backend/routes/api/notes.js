@@ -35,7 +35,7 @@ router.get(
     if (req.params.id === 'all') {
       console.log(req.params.id)
       const notes = await db.Note.findAll({
-        order: [['createdAt', 'DESC']]
+        order: [['updatedAt', 'DESC']]
       }
       ).map(note => note.dataValues)
       res.json(notes)
@@ -59,12 +59,11 @@ router.get(
 router.post(
   "/save",
   asyncHandler(async (req, res) => {
-    const { note, noteBookId, noteId } = req.body;
+    const { note, noteId } = req.body;
     const parsedId = parseInt(noteId, 10);
 
     const myNote = await db.Note.findByPk(parsedId);
     await myNote.update({
-      noteBookId: noteBookId,
       body: note,
     });
     console.log(myNote);
@@ -72,6 +71,7 @@ router.post(
       res.status(200);
       res.send(myNote);
     }
+
   })
 );
 

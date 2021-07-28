@@ -16,18 +16,20 @@ const WriteNote = ({ note, bookId }) => {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const { noteId, id } = useParams();
-  const noteBookId = parseInt(id, 10);
+  const { noteId } = useParams();
+  // console.log(noteId)
+  // const noteBookId = parseInt(id, 10);
   let focusNote = "";
   // const assignmentFunc = () => {
   const user = useSelector(state => state?.session?.user)
   if (note?.length) {
 
     focusNote = note?.find((note) => note?.id.toString() === noteId);
+    // console.log(focusNote)
   }
   //};
   useEffect(() => {
-    dispatch(getNotes(bookId))
+    // dispatch(getNotes(bookId))
 
     const pathname = history.location.pathname.split("/");
     const endOfPath = pathname[pathname.length - 1]
@@ -46,43 +48,32 @@ const WriteNote = ({ note, bookId }) => {
 
   const handleSave = async () => {
 
-    if (noteId) {
-      dispatch(saveNotes(text, noteBookId, noteId));
-    } else {
-      const newNoteId = await dispatch(newNote(text, noteBookId));
-      history.push(`/notebook/${noteBookId}/note/${newNoteId}`)
-    }
+    // if (noteId) {
+    console.log(noteId);
+    dispatch(saveNotes(text, noteId));
+    // } else {
+    //   const newNoteId = await dispatch(newNote(text, noteBookId));
+    //   history.push(`/notebook/${noteBookId}/note/${newNoteId}`)
+    // }
 
   };
   const handleDelete = (id) => {
-    dispatch(deleteNote(id))
+    //   dispatch(deleteNote(id))
 
-    history.push(`/notebook/${noteBookId}`)
+    //   history.push(`/notebook/${noteBookId}`)
   }
-  const handleEmail = async (text) => {
-    console.log()
-    await csrfFetch('/api/notes/send-mail', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ text: text })
-    })
 
-  }
 
   return (
-    <div className="note-container three">
+    <div className="note-container">
       <button onClick={handleSave}>save</button>
-      <button onClick={() => handleEmail(text)} className="email"><i class="gg-mail-open"></i></button>
       <button onClick={() => handleDelete(focusNote.id)} className="delete">x</button>
       <CKEditor
         editor={ClassicEditor}
         data={text}
-
-        onChange={(e, editor) => {
-
+        onChange={(event, editor) => {
           const data = editor.getData();
+          console.log(event, editor)
           setText(data);
 
         }}

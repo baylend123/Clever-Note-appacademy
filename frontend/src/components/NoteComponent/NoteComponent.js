@@ -1,6 +1,6 @@
-import { useParams, Link, Route, useHistory } from "react-router-dom";
+import { useParams, Link, Route, useHistory, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { parse } from 'node-html-parser';
 
 
@@ -11,6 +11,8 @@ import "./NoteComponent.css";
 const NoteComponent = () => {
   const history = useHistory()
   const dispatch = useDispatch();
+  const [containerCSS, setContainerCSS] = useState('notes-container')
+  const [individualCSS, setIndividualCSS] = useState('note')
   const state = useSelector(state => state)
   const { id } = useParams();
   const notes = useSelector((state) => state?.notes);
@@ -19,33 +21,42 @@ const NoteComponent = () => {
   }
 
   useEffect(() => {
-    console.log(history.location.pathname)
-    if (history.location.pathname !== '/') {
+    console.log(notes)
+    if (!notes.notes) {
 
-      dispatch(getNotes(id));
-    } else {
-      dispatch(getNotes('all'))
+      if (history.location.pathname !== '/') {
+
+        dispatch(getNotes('all'));
+      } else {
+        setContainerCSS('notes-container-home')
+        dispatch(getNotes('all'))
+      }
+      if (history.location.pathname === '/notes') {
+        setContainerCSS('notes-container-page')
+        setIndividualCSS('note-page')
+      }
+    }
+    if (history.location.pathname === '/notes') {
+      setIndividualCSS('note-page')
+      setContainerCSS('notes-container-page')
+    } else if (history.location.pathname === '/') {
+      setContainerCSS('notes-container-home')
     }
   }, [getNotes, deleteNote, history.location.pathname])
-  // useEffect(() => {
-  //   dispatch(getNotes(id));
-  // }, [getNotes, notes?.notes?.length, deleteNote, history.location.pathname])
 
-  //         < WriteNote note = {{ }} />
-  //     < WriteNote note = { notes.notes } />
   return (
     <>
-      <div className="notes-container two">
-        <Link to={`/notebook/${id}/new-note`}>
-          <div className="note">
-            <div className="note-content">
-              <div class="plus alt"></div>
-            </div>
-          </div>
-        </Link>
+      <div className={`${containerCSS}`}>
+        <div className='note-page-header'>
+          <img src="https://img.icons8.com/material-rounded/48/000000/note.png" />
+          <div>Notes</div>
+        </div>
+        <div className='note-page-count'>
+          {notes?.notes?.length} notes
+        </div>
         {notes?.notes?.map((note) => {
-          if (note.body !== undefined) {
-
+          if (note.body !== undefined && note.body.length > 0) {
+            console.log(note.body)
 
             const previewSplit = parse(note?.body ? note.body : '');
             const realPreview = previewSplit.childNodes[0].childNodes[0]?.rawText
@@ -57,11 +68,18 @@ const NoteComponent = () => {
               actualRealPreview = realPreview.slice(0, 1000)
             }
             return (
-              <Link key={note.id} to={`/notebook/${id}/note/${note.id}`} onLoad={clicked}>
-                <div className="note" key={note}>
-                  <div className="note-content">{actualRealPreview}</div>
+              <>
+                <div key={note.id} onLoad={clicked}>
+                  <div className={`${individualCSS}`} key={note}
+                    onClick={() => {
+                      history.push(`/notes/${note.id}`)
+                    }}
+                  >
+                    <div className="note-content">{actualRealPreview}</div>
+                  </div>
                 </div>
-              </Link>
+                <div className="note-page-edit">Last Edited {note.updatedAt.slice(0, 10)}</div>
+              </>
             );
           }
           return null
@@ -70,7 +88,7 @@ const NoteComponent = () => {
       <Route path="/notebook/:id/new-note">
         <WriteNote note={[]} />
       </Route>
-      <Route path="/notebook/:id/note/:noteId">
+      <Route path="/notes/:noteId">
         <WriteNote bookId={id} note={notes?.notes} />
       </Route>
     </>

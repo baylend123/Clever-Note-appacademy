@@ -1,4 +1,4 @@
-.notes-container {
+.notes-container-home {
   display: flex;
   flex-direction: row;
   align-items: left;
@@ -21,6 +21,49 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   overflow: hidden;
 }
-
+.note-page {
+  cursor: pointer;
+  position: relative;
+  width: 20vw;
+  height: 25vh;
+  background: #fafafa;
+  overflow: hidden;
+  margin-bottom: 2px;
+  padding: 20px;
+}
+.note-page-edit{
+  margin-left: 40px;
+  border-bottom: 1px solid grey;
+}
+.notes-container-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  background-color: white;
+  margin-left: 20.7vw;
+  padding: 3px;
+  height: 100vh;
+  width: 30vw;
+  overflow: scroll;
+}
+.note-page-header{
+  font-size:48px;
+  height: 48px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  line-height: 48px;
+  margin-left: 7vw;
+  margin-top: 20px;
+  margin-bottom:10px;
+}
+.note-page-count{
+  width: 100%;
+  margin-left: 9vw;
+  align-items: left;
+  margin-bottom: 20px;
+}
 
 

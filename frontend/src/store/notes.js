@@ -36,8 +36,9 @@ const noteDelete = (id) => {
 export const logoutNote = () => async (dispatch) => {
   dispatch(logout())
 }
-export const saveNotes = (note, noteBookId, noteId) => async (dispatch) => {
-  const body = { note, noteBookId, noteId };
+export const saveNotes = (note, noteId) => async (dispatch) => {
+  console.log(noteId)
+  const body = { note, noteId };
 
   const result = await csrfFetch("/api/notes/save", {
     method: "POST",

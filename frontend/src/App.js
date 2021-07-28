@@ -56,12 +56,15 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/new-notebook">
+          <Route path="/notes">
+            <NoteComponent />
+          </Route>
+          {/* <Route path="/new-notebook">
             <NewNoteBookForm />
           </Route>
           <Route path="/notebook/:id">
             <NoteComponent />
-          </Route>
+          </Route> */}
         </Switch>
 
 

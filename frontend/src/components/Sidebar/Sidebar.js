@@ -63,7 +63,7 @@ const Sidebar = ({ isLoaded }) => {
                         Home
                     </div>
                 </NavLink>
-                <NavLink to='/'
+                <NavLink to='/notes'
                     style={{ backgroundColor: active === 'notes' ? `grey` : '' }}
                     onClick={() => {
                         setActive('notes')

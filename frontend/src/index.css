@@ -28,6 +28,7 @@ body {
 }
 .two {
   grid-area: note;
+  width: auto;
 }
 .three {
   grid-area: editor;
