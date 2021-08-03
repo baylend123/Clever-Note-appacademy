@@ -19,9 +19,7 @@ const seedNotebooks = (numby) => {
             noteBookId: randomNumber(29),
             body: faker.lorem.paragraphs(12),
         }
-        console.log(note1, ',')
-        console.log(note2, ',')
-        console.log(note3, ',')
+
         i++
     }
 }

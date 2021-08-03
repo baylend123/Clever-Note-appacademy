@@ -1,0 +1,22 @@
+.notes-container-home {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    width: 100%;
+    height: 300px;
+    margin-top: 2px;
+    padding: 10px;
+    overflow: scroll;
+  }
+  @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+  
+  .note-page {
+    cursor: pointer;
+    position: relative;
+    width: 20vw;
+    height: 25vh;
+    background: #fafafa;
+    overflow: hidden;
+    margin-bottom: 2px;
+    padding: 20px;
+  }

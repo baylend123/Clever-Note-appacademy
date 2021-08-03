@@ -1,77 +1,80 @@
-.note-books-container {
-  display: flex;
-  flex-wrap: wrap;
-
-  max-width: auto;
-
-  padding: 5%;
-  min-height: 30vh;
-  max-height: 100vh;
-  overflow-y: scroll;
-}
-@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
-
-.notebooks-menu-button {
-
-  cursor: pointer;
-  margin-top: 5px;
+.notebooks-page-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  border: 1px solid lightyellow;
-  height: 30px;
-  background: linear-gradient(to right, lightblue, lightyellow);
-  border-radius: 5px;
+  margin-left: 25vw;
 }
-.book {
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-  text-align: center;
 
-  cursor: pointer;
-  background: #fff;
-  width: 10%;
+.notebooks-header {
+  margin-top: 5vh;
   height: 100px;
-  box-shadow:
-    /* The top layer shadow */ 0 1px 1px rgba(0, 0, 0, 0.15),
-    /* The second layer */ 0 10px 0 -5px #eee,
-    /* The second layer shadow */ 0 10px 1px -4px rgba(0, 0, 0, 0.15),
-    /* The third layer */ 0 20px 0 -10px #eee,
-    /* The third layer shadow */ 0 20px 1px -9px rgba(0, 0, 0, 0.15);
-  /* Padding for demo purposes */
-  padding: 30px;
-  position: relative;
-}
-/* .book button {
-  display: inline;
-  width: 20px;
-  height: 20px;
-} */
-.button-container {
+  line-height: 100px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  position: absolute;
-  bottom: 0px;
-  width: 100%;
-  left: 0px;
+  width: 74vw;
 }
-@import url("https://css.gg/mail-open.css");
-@import url("https://css.gg/file-remove.css");
-.email {
-  bottom: 0;
-  margin-left: 1px;
-  margin-top: 10px;
-  background: white;
+.notebook-text {
+  /* height: 30px; */
+  font-size: 50px;
+}
+.notebook-number {
+  font-size: 25px;
+  margin-left: 3px;
+  padding-top: 9px;
+}
+.new-notebook-text {
+  padding: 2px;
+  font-size: 25px;
+  color: #2ecc71;
+}
+.notebook-title-text {
+  margin-left: 2px;
+  font-size: 20px;
+}
+.search-container {
+  padding: 2px;
+  display: flex;
+  flex-direction: row;
+  border: 3px solid black;
+  margin-top: 20px;
+  margin-right: 3vw;
+  height: 40px;
+  background-color: white;
+  border-radius: 10px;
+}
+.notebook-search {
+  height: auto;
+  width: 15vw;
+  margin-right: 5px;
   border: none;
 }
-.delete {
-  content: "x";
-  color: red;
-  font-weight: 300;
-  font-size: 30px;
+.notebook-search-icon {
+  height: auto;
+  padding: 1px;
+}
 
-  background: none;
-  border: none;
+.notebook-number-new-container {
+  width: 74vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.new-notebook-button {
+  margin-top: 10px;
+  margin-right: 3vw;
+}
+.new-notebook-icon {
+  margin-right: 5px;
+  height: 25px;
+}
+
+.notebook-spacer {
+  width: 71.2vw;
+  border-top: 3px solid grey;
+}
+
+.notebooks-container {
+  display: flex;
+  flex-direction: column;
 }

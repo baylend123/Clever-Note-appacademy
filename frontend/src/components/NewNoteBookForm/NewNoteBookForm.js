@@ -16,7 +16,7 @@ const NewNoteBookForm = () => {
       tag,
     };
     const newNoteBookId = await dispatch(addNoteBook(noteBook));
-    console.log(newNoteBookId);
+
     history.push(`/notebook/${newNoteBookId}/new-note`);
   };
 

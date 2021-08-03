@@ -42,7 +42,7 @@ export const deleteNotebook = (id) => async (dispatch) => {
   })
 
   dispatch(deleteNoteBook(id))
-  console.log('nigga we made it')
+    ('nigga we made it')
 
 }
 export const getNoteBooks = () => async (dispatch) => {

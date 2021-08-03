@@ -10,7 +10,6 @@ router.get(
 
     const id = await getCurrentUserId(req)
     console.log(id)
-
     const noteBooks = await db.Notebook.findAll({
       where: {
         userId: id,

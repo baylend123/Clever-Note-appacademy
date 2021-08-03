@@ -34,6 +34,7 @@ const restoreUser = (req, res, next) => {
 
   return jwt.verify(token, secret, null, async (err, jwtPayload) => {
     if (err) {
+      console.log(err)
       return next();
     }
 
@@ -66,12 +67,15 @@ const requireAuth = [
 
 const getCurrentUserId = (req) => {
   const { token } = req.cookies;
+  console.log(token)
   return jwt.verify(token, secret, null, async (err, jwtPayload) => {
     if (err) {
+      console.log(error)
       return false;
     }
     const { id } = jwtPayload.data;
-    console.log(jwtPayload.data)
+
+
     return id;
   });
 };
@@ -82,7 +86,7 @@ const getCurrentUserEmail = (req) => {
       return false;
     }
     const { email } = jwtPayload.data;
-    console.log(jwtPayload.data)
+    (jwtPayload.data)
     return email;
   });
 };

@@ -16,7 +16,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 router.post('/send-mail', cors(), asyncHandler(async (req, res) => {
   const { text } = req.body
   const email = await getCurrentUserEmail(req)
-  console.log(email)
+    (email)
   const msg = {
     to: `${email}`,
     from: 'baylendoss12@gmail.com',
@@ -24,7 +24,7 @@ router.post('/send-mail', cors(), asyncHandler(async (req, res) => {
     html: `${text}`
   }
   const message = await sgMail.send(msg)
-  console.log(message)
+    (message)
 
 
 }))
@@ -33,7 +33,7 @@ router.get(
   "/:id",
   asyncHandler(async (req, res, next) => {
     if (req.params.id === 'all') {
-      console.log(req.params.id)
+      (req.params.id)
       const notes = await db.Note.findAll({
         order: [['updatedAt', 'DESC']]
       }
@@ -60,14 +60,16 @@ router.post(
   "/save",
   asyncHandler(async (req, res) => {
     const { note, noteId } = req.body;
+
     const parsedId = parseInt(noteId, 10);
 
     const myNote = await db.Note.findByPk(parsedId);
-    await myNote.update({
-      body: note,
-    });
-    console.log(myNote);
+
     if (myNote) {
+      await myNote.update({
+        body: note,
+      });
+
       res.status(200);
       res.send(myNote);
     }
@@ -83,18 +85,20 @@ router.post(
       noteBookId: noteBookId,
       body: note,
     });
-    console.log(newNote);
+    (newNote);
 
     res.json(newNote);
   })
 );
 router.post('/delete', asyncHandler(async (req, res) => {
+  console.log("Hey")
   const id = req.body.id
-  await db.Note.destroy({
+  let note = await db.Note.destroy({
     where: {
       id: id
     },
   })
+  console.log(note)
   res.status(200)
 }))
 module.exports = router;

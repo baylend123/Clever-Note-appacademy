@@ -26,7 +26,7 @@ const Sidebar = ({ isLoaded }) => {
                     width={500}
                     height={400}
                     initialColor={'red'}
-                    onSave={blob => console.log(blob)}
+                    onSave={blob => (blob)}
                     render={({ triggerSave, canvas }) => (
                         <div >
                             <button hidden onClick={triggerSave}>Save Canvas</button>
@@ -75,6 +75,20 @@ const Sidebar = ({ isLoaded }) => {
                         style={{ color: active === 'notes' ? 'white' : 'grey' }}
                     >
                         Notes
+                    </div>
+                </NavLink>
+                <NavLink to='/notebooks'
+                    style={{ backgroundColor: active === 'notebooks' ? `grey` : '' }}
+                    onClick={() => {
+                        setActive('notebooks')
+                    }}
+                    className='home-button-navlink'
+                >
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAABU0lEQVRoge2XTU7DMBCFnyM2kSqnC1pWPQJH6DnoJQrbcgQuQjkHHKFH6KopQiSKlOWwYdNKNlPbaYZkvmVs2e/5540DKIriw3A67feU55P6BQYPAOYdazqnBOGtbexmsTCtq9MNZ6RfE+t02i5iDoPHfFIDwJOrU8YaymCVSFQ4f2jgGQFmCaTE4j3SXCPiUSPSGIeRY1V9fH5XdC0xMbDqyCm0A8y9q/V2WrCKrIvQhfMamRXF8vxb+VUvs4zeQybrEtaOnK6SzJM2jsv+nxhMagXsCO3Sy4hHU0sag7nsAZXdT1/hoKkljYsfeH2mlu9Bmjy1+nr9amq50NSKRP8QQybrEtbqSTlevt3W1HIhso6MOrX6Mq5vLWkMJrXUiDS4Ro6dquBR+hp5RgjbJFIiIINXXzsrtdrGbnJbEwgrAHdJlPE5kMG2sfb5yvMqyqD4Ae0ymhqPwy5eAAAAAElFTkSuQmCC" />
+                    <div className='home-text'
+                        style={{ color: active === 'notebooks' ? 'white' : 'grey' }}
+                    >
+                        NoteBooks
                     </div>
                 </NavLink>
             </nav>

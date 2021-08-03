@@ -7,6 +7,7 @@ import Sidebar from "./components/Sidebar";
 import NoteComponent from "./components/NoteComponent";
 import NewNoteBookForm from "./components/NewNoteBookForm";
 import MainPageComponent from "./components/MainPageComponent";
+import NoteBooksComponent from "./components/NoteBooksComponent";
 import github from './images/download.png'
 
 import * as sessionActions from "./store/session";
@@ -59,12 +60,9 @@ function App() {
           <Route path="/notes">
             <NoteComponent />
           </Route>
-          {/* <Route path="/new-notebook">
-            <NewNoteBookForm />
+          <Route path="/">
+            <NoteBooksComponent />
           </Route>
-          <Route path="/notebook/:id">
-            <NoteComponent />
-          </Route> */}
         </Switch>
 
 

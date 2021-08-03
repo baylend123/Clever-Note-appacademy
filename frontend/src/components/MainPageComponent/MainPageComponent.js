@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './MainPage.css'
 
 import NoteComponent from '../NoteComponent'
+import MainPageNotes from '../MainPageNotes'
 const MainPage = () => {
     let date = new Date();
     let message = date.toTimeString()[0] + date.toTimeString()[1] > 12 ? 'Afternoon' : 'Morning'
@@ -23,7 +24,7 @@ const MainPage = () => {
                         NOTES <div className="note-bracket">:</div>
                     </Link>
                 </div>
-                <NoteComponent />
+                <MainPageNotes />
             </div>
         </div>
     )
