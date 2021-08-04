@@ -16,10 +16,23 @@ router.get(
       },
       order: [['createdAt', 'DESC']]
     });
-    const fatTrimmedNoteBooks = noteBooks.map(
-      (notebook) => notebook.dataValues
+    let fatTrimmedNoteBooks = await noteBooks.map(
+       (notebook) => {
+         
+        (async () => {
+          let awaitNotes = await db.Note.findAll({
+          where:{
+            noteBookId : notebook.dataValues.id,
+                }
+          })
+          notes = awaitNotes
+          notebook.dataValues['notes'] = notes.dataValues
+        })()
+        return notebook.dataValues
+      
+      }
     );
-
+    console.log(fatTrimmedNoteBooks); 
     res.status(200);
     res.json({
       fatTrimmedNoteBooks,

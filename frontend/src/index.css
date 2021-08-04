@@ -1,9 +1,9 @@
 /* TODO Add site wide styles */
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap');
-:root{
-  font-family : 'Baloo Chettan 2', cursive;
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap");
+:root {
+  font-family: "Baloo Chettan 2", cursive;
 }
 body {
   background-color: #eeffff;
@@ -33,24 +33,26 @@ body {
 .three {
   grid-area: editor;
 }
-button:focus {outline:0;}
-button{
+button:focus {
+  outline: 0;
+}
+button {
   cursor: pointer;
 }
-.DemoUserButton{
-position: relative;
-margin-right: 325px;
- cursor: pointer;
-        border-radius: 5em;
-        color:black;
-        background: linear-gradient(to right, lightblue, lightyellow);
-        border:0;
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-bottom: 10px;
-        padding-top: 10px;
-      
-        margin-left: 35%;
-        font-size: 13px;
-        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+.DemoUserButton {
+  position: relative;
+  margin-right: 325px;
+  cursor: pointer;
+  border-radius: 5em;
+  color: black;
+  background: linear-gradient(to right, lightblue, lightyellow);
+  border: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+
+  margin-left: 35%;
+  font-size: 13px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
 }

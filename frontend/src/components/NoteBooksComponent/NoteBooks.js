@@ -4,14 +4,18 @@ import { Link, useHistory } from "react-router-dom";
 
 import "./NoteBooks.css";
 import { getNoteBooks, deleteNotebook } from "../../store/notebook";
+import {getNotes} from "../../store/notes";
+import NewNotebookModal from '../NewNotebookModal'
 
 const NoteBooksComponent = () => {
   const history = useHistory()
   const [showMenu, setShowMenu] = useState(true);
+  const [notebookDropDown, setNotebookDropDown] = useState();
+  const [notebookSearch, setNotebookSearch] = useState()
   const dispatch = useDispatch();
   let notebooks = useSelector((state) => state?.notebooks?.notebooks);
   let user = useSelector((state) => state?.session?.user)
-  let state = useSelector((state) => state)
+  let notes = useSelector((state) => state?.notes?.notes)
 
 
   useEffect(() => {
@@ -20,16 +24,16 @@ const NoteBooksComponent = () => {
       dispatch(getNoteBooks());
     }
   }, [dispatch, user, notebooks?.notebooks?.length]);
-  console.log(notebooks)
-  const openMenu = () => {
-    setShowMenu((prevState) => !prevState);
-  };
+  
+  const handleNoteBookNotes = (id) => {
+    dispatch(getNotes(id))
+  }
+
   const handleDelete = (id) => {
     dispatch(deleteNotebook(id))
     history.push('/notebook')
   }
-
-
+  console.log(notebookSearch)
 
   if (user) {
 
@@ -46,6 +50,16 @@ const NoteBooksComponent = () => {
           >
             <input className='notebook-search'
               placeholder='Find Notebooks...'
+              onChange={
+                (e) => {
+                  let notebookSearcher = notebooks.filter((notebook) => {
+                    if(notebook.title.includes(e.target.value)){
+                      return notebook
+                    }
+                  })
+                  setNotebookSearch(notebookSearcher)
+                }
+              }
             >
             </input>
             <img className='notebook-search-icon' src="https://img.icons8.com/material-outlined/20/000000/search--v1.png" />
@@ -59,10 +73,7 @@ const NoteBooksComponent = () => {
               {notebooks?.length} Notebooks
             </div>
             <div className='new-notebook-button'>
-                <div className='new-notebook-text'>
-                <img className='new-notebook-icon' src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAADpUlEQVRoge2a32tbZRjHP885TVvasEoFccLcHA6iJFFMini3TpxCwVQhu/FysptR1nStiniRG5nKWMt+MJj6DzQXNrus4OqdmBPE1Mwfu6hjQ5ExNVSK8yR5vEgiXZslTZr1PY58b3LenOf98eH7Pu95X86BrrwlaXQz7CT0PvX7gw89lI3O/dqpBq1ONdSiAi7yRcSZ3N2pBrfkSC462zCuFW1wuWPOmHIE0O+AgAuL4W+nH9lua8ZAbKt0CFgGCeKWvtzuNDMG8s1z527ZVvFFYJkO5IzBqdVZGKMg0DkY4yDQGRhPgMD2YTwDAtuD8RQItA/jORBoD6ZnZ4a2Wc02pKXyXcWAC4tA6F7xnnSkviTY6O6OO9LOBnQrx4n/kSON1QXxmtrOkft1DG73ENd1pJPH307ogXGkC+I1dVctr+mBWbWMbePrKeIc87k6EBOxxhWNAHsAX+1+yJmK9/LXQjZ6yd1Y1zNTK5RJxFwG84ikFH0DCACDQG8tRtB5l8GfwpmpVzfWNw+iSSvkJE6JsAAcAPKIJKRMEJ/tx2f7pUxQlSmFq8A+RNPhTOIjNPnf+Hdk1WqUT6Fs4X2Bd4B/VDkZWLl5MXUkVdoQlgfy8fn42R/37zkOehphJuwUyMFbYNiRUCYRE3ibCsTY8sjs+fUQ4exkOuwkFmrl1JFUKRc9c7as1hjgIszUptmOv1aoKeIc87kM5oEDqkwsj8yeb6X/sJM4AcwB14dXh5405oirAzGqORFYuXmx1frDq0MXgO+BvX/sKrxubmqJvFa9+rhOTjTV0miyKMgnAKrETOZIBMC2rM/bbUC1uFi9et7kA/ExgLU1+wZUEhuVTc8HqLtCpnPR2fE7d/qv9/W7gDxq0pG7+1bZ8nIubIotm3TkN2B/f6/7OJDPRWfHNwY0WzX7+v7eCzbALyYd+QqgLBxuuwWxXqn88rUxEEUWqoN4Mz4ft1utf/BKsgfkKABlvWwM5OHVXZ8BKwJPV7Ydrem2vzBBZWN5zSdraWMgS6PJooVOVEp6Opg5+VKdsLTUnFunZ5zEYRE+BBSV6Wz0kmvqW5R6coGZ4dWhC0ujyWK9gINXkj23/YWJKoQP9FQuOvcumPuo5p5SuGohn6oWF0sDxZ8B7LWefSL2ywpHgacqYfpBLvLQe0iyDE1AdlLPOpNjZeQc8EST0GuoTOdGzlxe/6dnQKAydX73/zmuSExEXwDZDZSBG6pkBU37ZC1d76j7L8UGga4fK6w4AAAAAElFTkSuQmCC" />
-                New Notebook
-                </div>
+              <NewNotebookModal/>
             </div>
         </div>
 
@@ -73,17 +84,64 @@ const NoteBooksComponent = () => {
         </div>
 
         <div className='notebooks-container'>
-          {notebooks.map(notebook => {
+          {notebookSearch ? notebookSearch.map(notebook => {
             return(
               <div className='individual-notebook-container'>
+              <img 
+              className={notebookDropDown === notebook.id ? 'notebook-dropdown':'notebook-dropdown-start'} 
+              src="https://img.icons8.com/material-outlined/24/000000/expand-arrow--v1.png"
+              onClick={() => setNotebookDropDown(notebookDropDown === notebook.id ? null: notebook.id)}
+
+              />
+
               <img src="https://img.icons8.com/ios-glyphs/30/000000/spiral-bound-booklet.png"/>
               {notebook.title}
+              {notebookDropDown === notebook.id &&
+                <div className='notes-in-notebook-container'>
+                  {notes?.map(note => {
+                    return(
+                      <div className='notebook-note'
+                      onClick={() =>history.push(`/notes/${note.id}`)}
+                    >
+                      {note.body.slice(0,500)}
+                    </div>
+                    )
+                  })}
+                </div>
+              }
+              </div>
+            )
+          }) : notebooks?.map(notebook => {
+            return(
+              <div className='individual-notebook-container'>
+              <img 
+              className={notebookDropDown === notebook.id ? 'notebook-dropdown':'notebook-dropdown-start'} 
+              src="https://img.icons8.com/material-outlined/24/000000/expand-arrow--v1.png"
+              onClick={() => {setNotebookDropDown(notebookDropDown === notebook.id ? null: notebook.id)
+                handleNoteBookNotes(notebook.id)}
+              }
+
+              />
+
+              <img src="https://img.icons8.com/ios-glyphs/30/000000/spiral-bound-booklet.png"/>
+              {notebook.title}
+              {notebookDropDown === notebook.id &&
+                <div className='notes-in-notebook-container'>
+                {notes?.map(note => {
+                  return(
+                    <div className='notebook-note'
+                      onClick={() =>history.push(`/notes/${note.id}`)}
+                    >
+                      {note.body.slice(0,500)}
+                    </div>
+                  )
+                })}
+              </div>
+              }
               </div>
             )
           })}
-
         </div>
-
       </div>
     
     );

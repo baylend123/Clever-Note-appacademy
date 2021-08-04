@@ -5,6 +5,7 @@ import { restoreCSRF, csrfFetch } from './store/csrf';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import {ModalProvider} from './context/Modal.js'
 import App from './App';
 
 
@@ -25,11 +26,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 function Root() {
   return (
+    <ModalProvider>
     <Provider store={store}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </Provider>
+    </ModalProvider>
   );
 }
 
