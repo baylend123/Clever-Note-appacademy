@@ -1,15 +1,15 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const asyncHandler = require("express-async-handler");
-const db = require("../../db/models");
-const { getCurrentUserId } = require("../../utils/auth")
+const asyncHandler = require('express-async-handler');
+const db = require('../../db/models');
+const { getCurrentUserId } = require('../../utils/auth')
 
 router.get(
-  "/",
+  '/',
   asyncHandler(async (req, res) => {
 
     const id = await getCurrentUserId(req)
-    console.log(id)
+    
     const noteBooks = await db.Notebook.findAll({
       where: {
         userId: id,
@@ -32,7 +32,7 @@ router.get(
       
       }
     );
-    console.log(fatTrimmedNoteBooks); 
+    
     res.status(200);
     res.json({
       fatTrimmedNoteBooks,
@@ -40,20 +40,21 @@ router.get(
   })
 );
 router.post(
-  "/new",
+  '/new',
   asyncHandler(async (req, res) => {
     const userId = await getCurrentUserId(req)
-    const { title, tag } = req.body;
+    const { title} = req.body;
     const newNoteBook = await db.Notebook.build({
       userId: userId,
       title: title,
-      tags: tag,
+      tags: 'easter egg',
     });
     await newNoteBook.save();
     res.json(newNoteBook);
   })
 );
 router.post('/delete', asyncHandler(async (req, res) => {
+  console.log('here')
   const noteBookId = req.body.id
   await db.Note.destroy({
     where: {

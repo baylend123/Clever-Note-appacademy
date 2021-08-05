@@ -15,14 +15,14 @@ const setTokenCookie = (res, user) => {
     { expiresIn: parseInt(expiresIn) }, // 604,800 seconds = 1 week
   );
 
-  const isProduction = process.env.NODE_ENV === "production";
+  const isProduction = process.env.NODE_ENV === 'production';
 
   // Set the token cookie
   res.cookie('token', token, {
     maxAge: expiresIn * 1000, // maxAge in milliseconds
     httpOnly: true,
     secure: isProduction,
-    sameSite: isProduction && "Lax",
+    sameSite: isProduction && 'Lax',
   });
 
   return token;
@@ -34,7 +34,7 @@ const restoreUser = (req, res, next) => {
 
   return jwt.verify(token, secret, null, async (err, jwtPayload) => {
     if (err) {
-      console.log(err)
+      
       return next();
     }
 
@@ -67,10 +67,10 @@ const requireAuth = [
 
 const getCurrentUserId = (req) => {
   const { token } = req.cookies;
-  console.log(token)
+  
   return jwt.verify(token, secret, null, async (err, jwtPayload) => {
     if (err) {
-      console.log(error)
+      
       return false;
     }
     const { id } = jwtPayload.data;

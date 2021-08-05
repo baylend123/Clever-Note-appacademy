@@ -6,9 +6,9 @@ export async function csrfFetch(url, options = {}) {
   // set options.headers to an empty object if there is no headers
   options.headers = options.headers || {};
 
-  // if the options.method is not 'GET', then set the "Content-Type" header to
-    // "application/json", and set the "XSRF-TOKEN" header to the value of the 
-    // "XSRF-TOKEN" cookie
+  // if the options.method is not 'GET', then set the 'Content-Type' header to
+    // 'application/json', and set the 'XSRF-TOKEN' header to the value of the 
+    // 'XSRF-TOKEN' cookie
   if (options.method.toUpperCase() !== 'GET') {
     options.headers['Content-Type'] =
       options.headers['Content-Type'] || 'application/json';
@@ -26,7 +26,7 @@ export async function csrfFetch(url, options = {}) {
   return res;
 }
 
-// call this to get the "XSRF-TOKEN" cookie, should only be used in development
+// call this to get the 'XSRF-TOKEN' cookie, should only be used in development
 export function restoreCSRF() {
   return csrfFetch('/api/csrf/restore');
 }

@@ -1,7 +1,8 @@
-import { csrfFetch } from "./csrf";
+import { node } from 'prop-types';
+import { csrfFetch } from './csrf';
 
-const notesLoader = "notes/load";
-const noteSaver = "notes/save";
+const notesLoader = 'notes/load';
+const noteSaver = 'notes/save';
 const LOGOUT = 'note/Logout'
 const DELETE = 'note/Delete'
 const logout = () => {
@@ -40,31 +41,28 @@ export const saveNotes = (note, noteId) => async (dispatch) => {
 
   const body = { note, noteId };
 
-  const result = await csrfFetch("/api/notes/save", {
-    method: "POST",
+  let result = await csrfFetch('/api/notes/save', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
   });
-  const savedNote = await result.json();
-
-  if (result.status === 200) {
-
-    dispatch(saveNote(savedNote));
-  }
+  let savedNote = await result.json()
+    console.log(savedNote)
+  dispatch(saveNote(savedNote))
 };
 export const newNote = (note, noteBookId) => async (dispatch) => {
   const body = { note, noteBookId };
-  const result = await csrfFetch("/api/notes/new", {
-    method: "POST",
+  const result = await csrfFetch('/api/notes/new', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
   });
   const newNote = await result.json();
-
+  console.log(newNote)
 
 
   dispatch(saveNote(newNote));
@@ -74,18 +72,24 @@ export const newNote = (note, noteBookId) => async (dispatch) => {
 export const getNotes = (noteBookId) => async (dispatch) => {
   if (noteBookId === 'all') {
     const result = await csrfFetch('/api/notes/all')
-  }
+    if (result.status === 200) {
+      const notes = await result.json();
+      console.log(notes)
+      dispatch(loadNotes(notes));
+    }
+  }else{
   const result = await csrfFetch(`/api/notes/${noteBookId}`);
   if (result.status === 200) {
     const notes = await result.json();
-
+    console.log(notes)
     dispatch(loadNotes(notes));
   }
+}
 };
 
 export const deleteNote = (id) => async (dispatch) => {
-  console.log("Hey")
-  await csrfFetch("/api/notes/delete", {
+  
+  await csrfFetch('/api/notes/delete', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -94,23 +98,21 @@ export const deleteNote = (id) => async (dispatch) => {
   })
   dispatch(noteDelete(id));
 }
-const initialState = {
-  notes: null,
-};
+const initialState = []
 
 const notesReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case notesLoader:
-      newState = Object.assign({}, state);
-      newState.notes = action.payload;
+      newState = [...action.payload]
       return newState;
     case noteSaver:
-      newState = Object.assign({}, state);
-      // newState.notes.push(action.payload);
-      newState.notes = newState.notes.filter(note => note.id !== action.payload.id)
-      newState.notes = [...newState.notes, action.payload]
-      newState.notes = [...newState.notes].sort((a, b) => a.id - b.id)
+      newState = [...state]
+      newState.map((note,idx) => {
+        if( note.id === action.payload.id){
+          newState[idx] = action.payload
+        }
+      })
       return newState;
     case LOGOUT:
       newState = Object.assign({}, state);

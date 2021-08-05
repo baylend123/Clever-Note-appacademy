@@ -87,9 +87,11 @@
   flex-direction: column;
 }
 .notebook-dropdown-start {
+  cursor: pointer;
   transform: rotate(-90deg);
 }
 .notebook-dropdown {
+  cursor: pointer;
   transform: rotate(360deg);
 }
 
@@ -103,8 +105,42 @@
   overflow: scroll;
 }
 .notebook-note {
+  cursor: pointer;
   margin-left: 3vw;
   margin-right: 3vw;
   width: 40vw;
   border-bottom: 3px solid grey;
+}
+.delete-notebook-button {
+  cursor: pointer;
+  color: white;
+  background-color: green;
+  margin-right: 25px;
+  font-size: 18px;
+  border-radius: 5px;
+  line-height: 40px;
+  text-align: center;
+  border: 2px solid grey;
+  height: 40px;
+  width: 150px;
+}
+.create-note-notebook-button {
+  cursor: pointer;
+  color: grey;
+  font-size: 18px;
+  border-radius: 5px;
+  line-height: 40px;
+  text-align: center;
+  border: 2px solid grey;
+  height: 40px;
+  width: 150px;
+  border: 2px solid grey;
+}
+.delete-notebook-container {
+  margin-top: 5px;
+  height: 45px;
+  width: 43vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }

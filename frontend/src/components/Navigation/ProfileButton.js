@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
@@ -30,14 +30,14 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <div className="nav-user-info" onMouseOver={openMenu} >
-        <div className="nav-user-icon">{user.username[0]}</div><div className="nav-user-name"> {user.username}</div>
+      <div className='nav-user-info' onMouseOver={openMenu} >
+        <div className='nav-user-icon'>{user.username[0]}</div><div className='nav-user-name'> {user.username}</div>
 
       </div>
       {showMenu && (
-        <div className="drop">
+        <div className='drop'>
           <div onMouseLeave={closeMenu}>
-            <div className="drop-item">
+            <div className='drop-item'>
               <button align='center' className='logout' onClick={logout}>Log Out</button>
 
             </div>

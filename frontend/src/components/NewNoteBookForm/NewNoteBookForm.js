@@ -1,76 +1,50 @@
-import { useState } from "react";
-import { useHistory, Redirect } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addNoteBook } from "../../store/notebook.js";
-
+import { useState } from 'react';
+import { useHistory, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addNoteBook } from '../../store/notebook.js';
+import './NewNoteBook.css'
 const NewNoteBookForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [title, setTitle] = useState("");
-  const [tag, setTag] = useState("");
+  const [title, setTitle] = useState('');
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const noteBook = {
       title,
-      tag,
     };
-    const newNoteBookId = await dispatch(addNoteBook(noteBook));
+    dispatch(addNoteBook(noteBook));
 
-    history.push(`/notebook/${newNoteBookId}/new-note`);
+    let modal = document.getElementById('modal-background')
+    modal.click()
   };
 
   return (
-    <div className="main2">
-      <h1 className="sign" align="center">
-        Add A New Notebook
-      </h1>
-      <form className="form1">
-        <input
-          className="un"
-          type="text"
-          value={title ? title : ""}
-          placeholder="Name Your NoteBook"
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <h1 className="sign" align="center">
-          What is This Notebook for
-        </h1>
-        <h1 className="sign" align="center">
-          Work
-        </h1>
-        <input
-          name="radio"
-          className="un"
-          type="radio"
-          value="Work"
-          onChange={(e) => setTag(e.target.value)}
-          checked={tag === "Work" ? true : false}
-        />
-        <h1 className="sign" align="center">
-          School
-        </h1>
-        <input
-          className="un"
-          type="radio"
-          value="School"
-          onChange={(e) => setTag(e.target.value)}
-          checked={tag === "School" ? true : false}
-        />
-        <h1 className="sign" align="center">
-          Scratch
-        </h1>
-        <input
-          className="un"
-          type="radio"
-          value="Scratch"
-          onChange={(e) => setTag(e.target.value)}
-          checked={tag === "Scratch" ? true : false}
-        />
-        <button className="submit" type="submit" onClick={handleSubmit}>
-          Create Notebook
-        </button>
-      </form>
+    <div className='new-notebook-div'>
+     <div className='modal-new-notebook-text'>Create New Notebook</div>
+     <div className='notebook-blurb'>Notebooks are useful for grouping notes around a common topic. They can be private or shared.</div>
+     <div className='new-notebook-header'>Name</div>
+     <input
+     className='new-notebook-input'
+     placeholder='Notebook Name'
+      onChange={(e) => setTitle(e.target.value)}
+      value={title}
+     ></input>
+     <div className='new-notebook-spacer'>
+
+     </div>
+     <div className='new-notebook-submit-area'>
+      <div 
+      onClick={() =>{
+        let modal = document.getElementById('modal-background')
+        modal.click()
+      }}
+      className='cancel-button'>Cancel</div>
+      <div 
+      onClick={handleSubmit}
+      className='continue-button'>Continue</div>
+     </div>
     </div>
   );
 };

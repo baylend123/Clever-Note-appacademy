@@ -1,10 +1,10 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const asyncHandler = require("express-async-handler");
-const db = require("../../db/models");
+const asyncHandler = require('express-async-handler');
+const db = require('../../db/models');
 require('dotenv').config()
 
-const cors = require("cors")
+const cors = require('cors')
 
 const { getCurrentUserEmail } = require('../../utils/auth')
 
@@ -30,7 +30,7 @@ router.post('/send-mail', cors(), asyncHandler(async (req, res) => {
 }))
 
 router.get(
-  "/:id",
+  '/:id',
   asyncHandler(async (req, res, next) => {
     if (req.params.id === 'all') {
       (req.params.id)
@@ -57,7 +57,7 @@ router.get(
   })
 );
 router.post(
-  "/save",
+  '/save',
   asyncHandler(async (req, res) => {
     const { note, noteId } = req.body;
 
@@ -78,7 +78,7 @@ router.post(
 );
 
 router.post(
-  "/new",
+  '/new',
   asyncHandler(async (req, res) => {
     const { note, noteBookId } = req.body;
     const newNote = await db.Note.create({
@@ -91,14 +91,14 @@ router.post(
   })
 );
 router.post('/delete', asyncHandler(async (req, res) => {
-  console.log("Hey")
+  
   const id = req.body.id
   let note = await db.Note.destroy({
     where: {
       id: id
     },
   })
-  console.log(note)
+  
   res.status(200)
 }))
 module.exports = router;

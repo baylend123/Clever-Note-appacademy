@@ -1,3 +1,3 @@
-import MainPage from "./MainPageComponent";
+import MainPage from './MainPageComponent';
 
 export default MainPage

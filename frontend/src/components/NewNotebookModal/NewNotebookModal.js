@@ -1,4 +1,4 @@
-import NewNoteBookForm from "../NewNoteBookForm"
+import NewNoteBookForm from '../NewNoteBookForm'
 
 const NewNotebookButton = () => {
     return (

@@ -1,3 +1,3 @@
-import MainPageNotes from "./MainPageNotes";
+import MainPageNotes from './MainPageNotes';
 
 export default MainPageNotes

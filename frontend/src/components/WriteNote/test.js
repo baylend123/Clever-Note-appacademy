@@ -8,12 +8,12 @@ const App = () => {
         () => EditorState.createEmpty(),
     );
     return (
-        <div className="note-container">
-            <header className="App-header">
+        <div className='note-container'>
+            <header className='App-header'>
                 Rich Text Editor Example
       </header>
             <Editor editorState={editorState}
-                placeholder="hello"
+                placeholder='hello'
             />
         </div>
     )

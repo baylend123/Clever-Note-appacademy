@@ -23,33 +23,33 @@ function LoginFormPage() {
   }
 
   return (
-    <div className="main three" >
-      <h1 className="sign" align="center">Sign in below</h1>
-      <form onSubmit={handleSubmit} className="form1" >
+    <div className='main three' >
+      <h1 className='sign' align='center'>Sign in below</h1>
+      <form onSubmit={handleSubmit} className='form1' >
         <ul>
-          {errors.map((error, idx) => <p className="sign" key={idx}>{error}</p>)}
+          {errors.map((error, idx) => <p className='sign' key={idx}>{error}</p>)}
         </ul>
 
         <input
-          type="text"
+          type='text'
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
-          className="un"
-          placeholder="Username"
+          className='un'
+          placeholder='Username'
         />
 
 
         <input
-          type="password"
+          type='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="pass"
-          placeholder="Password"
+          className='pass'
+          placeholder='Password'
         />
 
-        <button className="submit" type="submit">Log In</button>
+        <button className='submit' type='submit'>Log In</button>
       </form>
     </div>
   );

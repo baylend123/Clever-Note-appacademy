@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-import * as sessionActions from "../../store/session";
-import "./SignupForm.css";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import * as sessionActions from '../../store/session';
+import './SignupForm.css';
 
 function SignupFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to='/' />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,61 +27,61 @@ function SignupFormPage() {
       });
     }
     return setErrors([
-      "Confirm Password field must be the same as the Password field",
+      'Confirm Password field must be the same as the Password field',
     ]);
   };
 
   return (
-    <div className="main three">
-      <h1 className="sign" align="center">
+    <div className='main three'>
+      <h1 className='sign' align='center'>
         Sign Up Below
       </h1>
-      <form onSubmit={handleSubmit} className="form1">
+      <form onSubmit={handleSubmit} className='form1'>
         <ul>
           {errors.map((error, idx) => (
-            <p className="sign" key={idx}>
+            <p className='sign' key={idx}>
               {error}
             </p>
           ))}
         </ul>
 
         <input
-          type="text"
+          type='text'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="un"
-          placeholder="Email"
+          className='un'
+          placeholder='Email'
         />
 
         <input
-          type="text"
+          type='text'
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          className="un"
-          placeholder="Username"
+          className='un'
+          placeholder='Username'
         />
 
         <input
-          type="password"
+          type='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="pass"
-          placeholder="Password"
+          className='pass'
+          placeholder='Password'
         />
 
         <input
-          type="password"
+          type='password'
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
-          className="pass"
-          placeholder="Confirm Password"
+          className='pass'
+          placeholder='Confirm Password'
         />
 
-        <button className="submit" type="submit">
+        <button className='submit' type='submit'>
           Sign Up
         </button>
       </form>

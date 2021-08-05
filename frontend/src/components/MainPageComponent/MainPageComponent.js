@@ -10,18 +10,18 @@ const MainPage = () => {
 
     return (
         <div
-            className="main-page"
+            className='main-page'
         >
             <div
-                className="main-welcome-message"
+                className='main-welcome-message'
             >
                 <div>Good {message}</div>
                 <div>{date.toDateString()}</div>
             </div>
-            <div className="main-page-note-holder">
+            <div className='main-page-note-holder'>
                 <div>
-                    <Link className="main-page-note-link">
-                        NOTES <div className="note-bracket">:</div>
+                    <Link className='main-page-note-link'>
+                        NOTES <div className='note-bracket'>:</div>
                     </Link>
                 </div>
                 <MainPageNotes />

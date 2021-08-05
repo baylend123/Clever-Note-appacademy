@@ -1,7 +1,7 @@
-import { csrfFetch } from "./csrf";
+import { csrfFetch } from './csrf';
 
-const LOADNOTEBOOK = "notebook/LOAD";
-const ADDNEWNOTEBOOK = "notebook/ADD";
+const LOADNOTEBOOK = 'notebook/LOAD';
+const ADDNEWNOTEBOOK = 'notebook/ADD';
 const LOGOUT = 'notebook/Logout'
 const DELETE = 'notebook/delete'
 
@@ -40,9 +40,9 @@ export const deleteNotebook = (id) => async (dispatch) => {
     body: JSON.stringify({ id: id })
 
   })
-
+  
   dispatch(deleteNoteBook(id))
-    ('nigga we made it')
+    
 
 }
 export const getNoteBooks = () => async (dispatch) => {
@@ -55,43 +55,44 @@ export const getNoteBooks = () => async (dispatch) => {
   }
 };
 export const addNoteBook = (notebook) => async (dispatch) => {
-
+  console.log('here')
   const result = await csrfFetch(`/api/notebooks/new`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(notebook),
   });
   const newNoteBook = await result.json();
-
+  console.log(newNoteBook);
   dispatch(addNewNoteBook(newNoteBook));
-  return newNoteBook.id
+  
 };
 export const logoutNotebook = () => async (dispatch) => {
   dispatch(logout())
 }
 
-const initialState = { notebooks: null };
+const initialState = [];
 const noteBooksReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case LOADNOTEBOOK:
-      newState = Object.assign({}, state);
-      newState.notebooks = action.payload;
+      newState =[...state];
+      newState = [...action.payload];
       return newState;
 
     case ADDNEWNOTEBOOK:
-      newState = Object.assign({}, state);
-      newState.notebooks.push(action.payload);
+      newState = [...state];
+      console.log(newState)
+      newState = [action.payload, ...newState];
       return newState;
     case LOGOUT:
       newState = Object.assign({}, state);
       newState.notebooks = []
       return newState;
     case DELETE:
-      newState = Object.assign({}, state);
-      newState = newState.notebooks.filter(notebook => notebook.id !== action.payload)
+      newState = [...state]
+      newState = newState.filter(notebook => notebook.id !== action.payload)
       return newState
     default:
       return state;

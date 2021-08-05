@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 
-import "./NoteBooks.css";
-import { getNoteBooks, deleteNotebook } from "../../store/notebook";
-import {getNotes} from "../../store/notes";
+import './NoteBooks.css';
+import { getNoteBooks, deleteNotebook } from '../../store/notebook';
+import {getNotes} from '../../store/notes';
 import NewNotebookModal from '../NewNotebookModal'
 
 const NoteBooksComponent = () => {
@@ -13,9 +13,10 @@ const NoteBooksComponent = () => {
   const [notebookDropDown, setNotebookDropDown] = useState();
   const [notebookSearch, setNotebookSearch] = useState()
   const dispatch = useDispatch();
-  let notebooks = useSelector((state) => state?.notebooks?.notebooks);
+  let notebooks = useSelector((state) => state?.notebooks);
   let user = useSelector((state) => state?.session?.user)
-  let notes = useSelector((state) => state?.notes?.notes)
+  let notes = useSelector((state) => state?.notes)
+  console.log(notebooks)
 
 
   useEffect(() => {
@@ -26,14 +27,16 @@ const NoteBooksComponent = () => {
   }, [dispatch, user, notebooks?.notebooks?.length]);
   
   const handleNoteBookNotes = (id) => {
+    console.log(id)
     dispatch(getNotes(id))
   }
 
   const handleDelete = (id) => {
+    console.log('here')
     dispatch(deleteNotebook(id))
-    history.push('/notebook')
+    
   }
-  console.log(notebookSearch)
+  
 
   if (user) {
 
@@ -62,7 +65,7 @@ const NoteBooksComponent = () => {
               }
             >
             </input>
-            <img className='notebook-search-icon' src="https://img.icons8.com/material-outlined/20/000000/search--v1.png" />
+            <img className='notebook-search-icon' src='https://img.icons8.com/material-outlined/20/000000/search--v1.png' />
           </div>
         </div>
 
@@ -89,19 +92,32 @@ const NoteBooksComponent = () => {
               <div className='individual-notebook-container'>
               <img 
               className={notebookDropDown === notebook.id ? 'notebook-dropdown':'notebook-dropdown-start'} 
-              src="https://img.icons8.com/material-outlined/24/000000/expand-arrow--v1.png"
+              src='https://img.icons8.com/material-outlined/24/000000/expand-arrow--v1.png'
               onClick={() => setNotebookDropDown(notebookDropDown === notebook.id ? null: notebook.id)}
 
               />
 
-              <img src="https://img.icons8.com/ios-glyphs/30/000000/spiral-bound-booklet.png"/>
+              <img src='https://img.icons8.com/ios-glyphs/30/000000/spiral-bound-booklet.png'/>
               {notebook.title}
               {notebookDropDown === notebook.id &&
                 <div className='notes-in-notebook-container'>
+                  <div
+                  className='delete-notebook-container'
+                  >
+                  <div
+                  className='delete-notebook-button'
+                  align='right'
+                  onClick={() => handleDelete(notebook.id)}
+                  >Delete Notebook</div>
+                  <div
+                  className='create-note-notebook-button'
+                  onClick={() => history.push(`/notebook/${notebook.id}`)}
+                  >Create New Note</div>
+                  </div>
                   {notes?.map(note => {
                     return(
                       <div className='notebook-note'
-                      onClick={() =>history.push(`/notes/${note.id}`)}
+                      onClick={() =>history.push(`/notebook/${notebook.id}/${note.id}`)}
                     >
                       {note.body.slice(0,500)}
                     </div>
@@ -114,23 +130,37 @@ const NoteBooksComponent = () => {
           }) : notebooks?.map(notebook => {
             return(
               <div className='individual-notebook-container'>
+          
               <img 
               className={notebookDropDown === notebook.id ? 'notebook-dropdown':'notebook-dropdown-start'} 
-              src="https://img.icons8.com/material-outlined/24/000000/expand-arrow--v1.png"
+              src='https://img.icons8.com/material-outlined/24/000000/expand-arrow--v1.png'
               onClick={() => {setNotebookDropDown(notebookDropDown === notebook.id ? null: notebook.id)
                 handleNoteBookNotes(notebook.id)}
               }
 
               />
 
-              <img src="https://img.icons8.com/ios-glyphs/30/000000/spiral-bound-booklet.png"/>
+              <img src='https://img.icons8.com/ios-glyphs/30/000000/spiral-bound-booklet.png'/>
               {notebook.title}
               {notebookDropDown === notebook.id &&
                 <div className='notes-in-notebook-container'>
+                  <div
+                  className='delete-notebook-container'
+                  >
+                  <div
+                  className='delete-notebook-button'
+                  align='right'
+                  onClick={() => handleDelete(notebook.id)}
+                  >Delete Notebook</div>
+                    <div
+                  className='create-note-notebook-button'
+                  onClick={() => history.push(`/notebook/${notebook.id}`)}
+                  >Create New Note</div>
+                  </div>
                 {notes?.map(note => {
                   return(
                     <div className='notebook-note'
-                      onClick={() =>history.push(`/notes/${note.id}`)}
+                    onClick={() =>history.push(`/notebook/${notebook.id}/${note.id}`)}
                     >
                       {note.body.slice(0,500)}
                     </div>
