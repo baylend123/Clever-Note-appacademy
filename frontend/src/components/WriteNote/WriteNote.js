@@ -12,6 +12,7 @@ const WriteNote = ({ note, bookId }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { noteId } = useParams();
+  const {notebookId} = useParams();
   let text;
   const notes = useSelector(state => state?.notes)
   let focusNote = notes?.find((note) => note?.id.toString() === noteId);
@@ -21,7 +22,18 @@ const WriteNote = ({ note, bookId }) => {
   let classname = history.location.pathname.includes('notebook') === 'w' ? 'note-container': 'note-container2 two'
 
   const handleSave = async () => {
-    dispatch(saveNotes(text, noteId));
+    if(noteId === 'new' && notebookId){
+      console.log('here')
+      dispatch(newNote(text, notebookId))
+    }
+    else if(!noteId && !notebookId){
+      console.log("newNote")
+      dispatch(newNote(text, notebookId))
+    }else{
+
+      dispatch(saveNotes(text, noteId));
+    }
+    
   };
   let timer;
 

@@ -111,7 +111,7 @@ const NoteBooksComponent = () => {
                   >Delete Notebook</div>
                   <div
                   className='create-note-notebook-button'
-                  onClick={() => history.push(`/notebook/${notebook.id}`)}
+                  onClick={() => history.push(`/notebook/${notebook.id}/new`)}
                   >Create New Note</div>
                   </div>
                   {notes?.map(note => {
@@ -154,7 +154,7 @@ const NoteBooksComponent = () => {
                   >Delete Notebook</div>
                     <div
                   className='create-note-notebook-button'
-                  onClick={() => history.push(`/notebook/${notebook.id}`)}
+                  onClick={() => history.push(`/notebook/${notebook.id}/new`)}
                   >Create New Note</div>
                   </div>
                 {notes?.map(note => {

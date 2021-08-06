@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import './SignupForm.css';
 
 function SignupFormPage() {
+  const history = useHistory()
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState('');
@@ -13,7 +14,7 @@ function SignupFormPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to='/' />;
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,10 +33,17 @@ function SignupFormPage() {
   };
 
   return (
-    <div className='main three'>
-      <h1 className='sign' align='center'>
-        Sign Up Below
-      </h1>
+    <div className='signup-container'>
+    <div className='main'>
+    <img className='logo-img' src="https://img.icons8.com/pastel-glyph/50/26e07f/note.png"/>
+      <h1 className='sign' align='center'>CleverNote</h1>
+      <div className='login-blurb'>Clevernote, the app whos name rhymes with Evernote</div>
+        <div className='login-spacer-div'>
+        <div className='login-spacer1'> </div>
+        <div className='login-spacer-text'>Sign Up</div>
+        <div className='login-spacer2'> </div>
+        </div>
+      
       <form onSubmit={handleSubmit} className='form1'>
         <ul>
           {errors.map((error, idx) => (
@@ -50,7 +58,7 @@ function SignupFormPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className='un'
+          className='username-signup'
           placeholder='Email'
         />
 
@@ -59,7 +67,7 @@ function SignupFormPage() {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          className='un'
+          className='username-signup'
           placeholder='Username'
         />
 
@@ -68,7 +76,7 @@ function SignupFormPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className='pass'
+          className='password'
           placeholder='Password'
         />
 
@@ -77,7 +85,7 @@ function SignupFormPage() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
-          className='pass'
+          className='password'
           placeholder='Confirm Password'
         />
 
@@ -85,6 +93,13 @@ function SignupFormPage() {
           Sign Up
         </button>
       </form>
+      <div className='create-account-div'>
+        <div className='create-account-start'>Already have an account?</div>
+        <div className='create-account-end'
+        onClick={() => history.push('/login')}
+        >Login!</div>
+      </div>
+    </div>
     </div>
   );
 }

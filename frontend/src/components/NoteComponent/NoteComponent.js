@@ -16,9 +16,10 @@ const NoteComponent = () => {
   const clicked = () => {
     return
   }
-
+  console.log(notes.length)
   const handleDelete = (id) => {
     dispatch(deleteNote(id));
+    history.push('/notes')
   }
 
   useEffect(() => {
@@ -39,23 +40,22 @@ const NoteComponent = () => {
 
           return (
             <>
-              <div key={note.id} onLoad={clicked}>
-                <img align='right' src='https://img.icons8.com/windows/20/000000/xbox-x.png'
+              <div key={note?.id} onLoad={clicked}>
+                <img className='delete-note-button' align='right' src='https://img.icons8.com/windows/20/000000/xbox-x.png'
                   onClick={() => {
-                    handleDelete(note.id)
-                    
+                    handleDelete(note?.id) 
                   }
                   }
                 />
                 <div className='note-page' key={note}
                   onClick={() => {
-                    history.push(`/notes/${note.id}`)
+                    history.push(`/notes/${note?.id}`)
                   }}
                 >
-                  <div className='note-content'>{parse(note.body)}</div>
+                  <div className='note-content'>{note?.body}</div>
                 </div>
               </div>
-              <div className='note-page-edit'>Last Edited {note.updatedAt.slice(0, 10)}</div>
+              <div className='note-page-edit'>Last Edited {note?.updatedAt.slice(0, 10)}</div>
             </>
           );
         }

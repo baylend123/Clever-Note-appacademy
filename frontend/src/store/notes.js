@@ -89,13 +89,15 @@ export const getNotes = (noteBookId) => async (dispatch) => {
 
 export const deleteNote = (id) => async (dispatch) => {
   
-  await csrfFetch('/api/notes/delete', {
+  let result =  await csrfFetch('/api/notes/delete', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ id: id })
   })
+  let note = await result.json();
+  console.log(note)
   dispatch(noteDelete(id));
 }
 const initialState = []
@@ -115,12 +117,16 @@ const notesReducer = (state = initialState, action) => {
       })
       return newState;
     case LOGOUT:
-      newState = Object.assign({}, state);
-      newState.notes = []
+      newState = []
+      
       return newState;
     case DELETE:
-      newState = Object.assign({}, state);
-      newState = newState.notes.filter(note => note.id !== action.payload)
+      newState = [...state]
+      newState = newState.filter((note,idx) => {
+        if(note?.id !== action.payload){
+          return note
+        }
+      })
       return newState;
     default:
       return state;

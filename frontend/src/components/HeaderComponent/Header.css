@@ -1,26 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 
-.head{
-  
-  
+.head {
 }
-.search-bar{
-    display: flex;
-    flex-direction: row;
-    height: 40px;
-    width: 90%;
-    border-radius:20px;
-    margin-left: 2%;
-    background-color:#8f8f8f;
-    margin-bottom: 10px;
+.search-bar {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  width: 90%;
+  border-radius: 20px;
+  margin-left: 2%;
+  background-color: #8f8f8f;
+  margin-bottom: 10px;
 }
-.search-icon{
-    padding: 10px;
+.search-icon {
+  padding: 10px;
 }
-.search{
-    font-size: 20px;
-    color:white;
-    background:none;
-    border: none;
-    outline: none;
+.search {
+  font-size: 20px;
+  color: white;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.search-result-individual {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 2px solid grey;
+}
+.note-search-box {
+  margin-top: 100px;
+  border: 1px solid grey;
+  position: absolute;
+  height: 40vh;
+  width: 500px;
+  background-color: white;
+  overflow: scroll;
 }

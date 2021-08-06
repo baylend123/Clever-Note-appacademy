@@ -6,7 +6,7 @@ import { logoutNotebook } from '../../store/notebook'
 import { logoutNote } from '../../store/notes'
 import './Navigation.css'
 
-function ProfileButton({ user }) {
+function Button({ user }) {
   const history = useHistory()
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -25,7 +25,7 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
     dispatch(logoutNotebook())
     dispatch(logoutNote());
-    history.push('/')
+    history.push('/login')
   };
 
   return (
@@ -49,4 +49,4 @@ function ProfileButton({ user }) {
   );
 }
 
-export default ProfileButton;
+export default Button;

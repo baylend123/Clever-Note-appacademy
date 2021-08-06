@@ -1,96 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-
-.main2 {
-  background-color: lightyellow;
-  width: 400px;
-  min-height: 700px;
-  height: auto;
-  margin: 7em auto;
-  border-radius: 1.5em;
-  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-  padding-bottom: 2px;
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+.signup-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
 }
-
-.sign {
-  padding-top: 20px;
-  color: black;
-
-  font-weight: bold;
-  font-size: 23px;
+.logo-img {
+  margin-top: 15vh;
+  height: 80px;
+  width: 80px;
 }
-
-.un {
-  width: 76%;
-  color: rgb(38, 50, 56);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 1px;
-  background: rgba(136, 126, 126, 0.04);
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  outline: none;
-  box-sizing: border-box;
-  border: 2px solid rgba(0, 0, 0, 0.02);
-  margin-bottom: 50px;
-  margin-left: 46px;
-  text-align: center;
-  margin-bottom: 27px;
-
-}
-
-form.form2 {
-  padding-top: 40px;
-}
-
-.pass {
-  width: 76%;
-  color: rgb(38, 50, 56);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 1px;
-  background: rgba(136, 126, 126, 0.04);
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  outline: none;
-  box-sizing: border-box;
-  border: 2px solid rgba(0, 0, 0, 0.02);
-  margin-bottom: 50px;
-  margin-left: 46px;
-  text-align: center;
-  margin-bottom: 27px;
-
-}
-
-.un:focus,
-.pass:focus {
-  border: 2px solid rgba(0, 0, 0, 0.18) !important;
-}
-
-.submit {
-  cursor: pointer;
-  border-radius: 5em;
-  color: black;
-  background: linear-gradient(to right, lightblue, lightyellow);
-  border: 0;
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-
-  margin-left: 35%;
-  font-size: 13px;
-  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
-}
-
-.forgot {
-  text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-  color: #e1bee7;
-  padding-top: 15px;
-}
-@media (max-width: 600px) {
-  .main {
-    border-radius: 0px;
-  }
+.username-signup {
+  margin-top: 10px;
+  border: 0.5px solid lightgray;
+  font-size: 20px;
+  width: 350px;
+  height: 35px;
+  border-radius: 5px;
 }

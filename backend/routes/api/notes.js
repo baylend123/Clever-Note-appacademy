@@ -60,6 +60,7 @@ router.post(
   '/save',
   asyncHandler(async (req, res) => {
     const { note, noteId } = req.body;
+    console.log()
 
     const parsedId = parseInt(noteId, 10);
 
@@ -81,24 +82,31 @@ router.post(
   '/new',
   asyncHandler(async (req, res) => {
     const { note, noteBookId } = req.body;
-    const newNote = await db.Note.create({
-      noteBookId: noteBookId,
-      body: note,
-    });
-    (newNote);
+    let newNote
+    try {
+        newNote = await db.Note.create({
+        noteBookId: noteBookId ? noteBookId: 1 ,
+        body: note,
+      });
+    }
+    
+    catch (err) {
+      console.log(err);
+    }
 
     res.json(newNote);
   })
 );
 router.post('/delete', asyncHandler(async (req, res) => {
-  
-  const id = req.body.id
-  let note = await db.Note.destroy({
+  const {id} = req.body
+  const noteId = parseInt(id, 10)
+  console.log(noteId)
+  let noteDel = await db.Note.destroy({
     where: {
-      id: id
+      id: noteId
     },
   })
   
-  res.status(200)
+  res.json(noteDel)
 }))
 module.exports = router;

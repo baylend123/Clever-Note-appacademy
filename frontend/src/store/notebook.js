@@ -87,8 +87,8 @@ const noteBooksReducer = (state = initialState, action) => {
       newState = [action.payload, ...newState];
       return newState;
     case LOGOUT:
-      newState = Object.assign({}, state);
-      newState.notebooks = []
+      newState = []
+      
       return newState;
     case DELETE:
       newState = [...state]

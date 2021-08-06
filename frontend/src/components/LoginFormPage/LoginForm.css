@@ -1,105 +1,180 @@
- 
-        /* body {
-        background-color: #F3EBF6;
-        : 'Ubuntu', sans-serif;
-    } 
-     */
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+.login-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+.logo-img {
+  margin-top: 15vh;
+  height: 80px;
+  width: 80px;
+}
+.main {
+  box-shadow: 0px 2px 6px grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  width: 700px;
+  height: 100vh;
+  border-radius: 5px;
+}
+.form1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.sign {
+  color: black;
 
-   
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+  font-weight: bold;
+  font-size: 50px;
+}
+.login-blurb {
+  font-size: 20px;
+}
+.login-spacer-div {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+}
+.login-spacer1 {
+  margin-top: 11px;
+  width: 10vw;
+  border-top: 1px solid grey;
+}
+.login-spacer-text {
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-bottom: 10px;
+}
+.login-spacer2 {
+  margin-top: 11px;
+  width: 10vw;
+  border-top: 1px solid grey;
+}
+.username {
+  border: 0.5px solid lightgray;
+  font-size: 20px;
+  width: 350px;
+  height: 35px;
+  border-radius: 5px;
+}
+.password {
+  border: 0.5px solid lightgray;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 20px;
+  width: 350px;
+  height: 35px;
+}
+.submit {
+  background-color: #68e180;
+  color: white;
+  border-radius: 5px;
+  margin-top: 40px;
+  font-size: 20px;
+  width: 350px;
+  height: 50px;
+}
+.login-demo-area {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+}
+.demo-sentance-start {
+  font-size: 20px;
+}
+.demo-sentance-end {
+  cursor: pointer;
+  font-size: 20px;
+  color: green;
+  margin-left: 5px;
+}
+.create-account-div {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.create-account-start {
+  font-size: 20px;
+}
+.create-account-end {
+  cursor: pointer;
+  color: green;
+  font-size: 20px;
+}
+/* 
+}
 
+.un {
+  width: 76%;
+  color: rgb(38, 50, 56);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background: rgba(136, 126, 126, 0.04);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.02);
+  margin-bottom: 50px;
+  margin-left: 46px;
+  text-align: center;
+  margin-bottom: 27px;
+}
 
-    .main {
-        background-color: lightyellow;
-        width: 400px;
-        height: auto;
-        margin: 7em auto;
-        border-radius: 1.5em;
-        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-        margin-bottom: 2px;
-        position: relative;
-       
-    }
-    
-    .sign {
-        padding-top: 40px;
-        color: black;
-      
-        font-weight: bold;
-        font-size: 23px;
-    }
-    
-    .un {
-    width: 76%;
-    color: rgb(38, 50, 56);
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 1px;
-    background: rgba(136, 126, 126, 0.04);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    outline: none;
-    box-sizing: border-box;
-    border: 2px solid rgba(0, 0, 0, 0.02);
-    margin-bottom: 50px;
-    margin-left: 46px;
-    text-align: center;
-    margin-bottom: 27px;
-  
-    }
-    
-    form.form1 {
-        padding-top: 40px;
-    }
-    
-    .pass {
-            width: 76%;
-    color: rgb(38, 50, 56);
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 1px;
-    background: rgba(136, 126, 126, 0.04);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    outline: none;
-    box-sizing: border-box;
-    border: 2px solid rgba(0, 0, 0, 0.02);
-    margin-bottom: 50px;
-    margin-left: 46px;
-    text-align: center;
-    margin-bottom: 27px;
+form.form1 {
+  padding-top: 40px;
+}
 
-    }
-    
-   
-    .un:focus, .pass:focus {
-        border: 2px solid rgba(0, 0, 0, 0.18) !important;
-        
-    }
-    
-    .submit {
-      cursor: pointer;
-        border-radius: 5em;
-        color:black;
-        background: linear-gradient(to right, lightblue, lightyellow);
-        border:0;
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-bottom: 10px;
-        padding-top: 10px;
-      
-        margin-left: 35%;
-        font-size: 13px;
-        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
-    }
-    
-    @media (max-width: 600px) {
-        .main {
-            border-radius: 0px;
-        }
-    }
+.pass {
+  width: 76%;
+  color: rgb(38, 50, 56);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background: rgba(136, 126, 126, 0.04);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.02);
+  margin-bottom: 50px;
+  margin-left: 46px;
+  text-align: center;
+  margin-bottom: 27px;
+}
 
-        
-        
+.un:focus,
+.pass:focus {
+  border: 2px solid rgba(0, 0, 0, 0.18) !important;
+}
+
+.submit {
+  cursor: pointer;
+  border-radius: 5em;
+  color: black;
+  background: linear-gradient(to right, lightblue, lightyellow);
+  border: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+
+  margin-left: 35%;
+  font-size: 13px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+
+@media (max-width: 600px) {
+  .main {
+    border-radius: 0px;
+  }
+} */
