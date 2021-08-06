@@ -93,6 +93,16 @@ const Sidebar = ({ isLoaded }) => {
                 </NavLink>
             </nav>
             {/* <NoteBooksComponent /> */}
+            <div className='scratch-pad-container'>
+                <div className='scratch-pad-text'>
+                    Scratch Pad
+                </div>
+                <div className='scratch-pad-spacer'></div>
+                <textarea 
+                placeholder='Write something...'
+                className='scratch-pad-textarea' />
+            </div>
+
         </div>
 
     )

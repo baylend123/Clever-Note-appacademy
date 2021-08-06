@@ -1,41 +1,69 @@
-.container{
-    border-radius: 0.5em;
-    background-color: #1a1a1a;
-    color: #8f8f8f;
-    height:100%;
-    width:25vw;
-    max-width: 400px;
-    position: fixed;
+.container {
+  border-radius: 0.5em;
+  background-color: #1a1a1a;
+  color: #8f8f8f;
+  height: 100%;
+  width: 25vw;
+  max-width: 400px;
+  position: fixed;
 }
-.painter{
-    border: 1px solid black
+.painter {
+  border: 1px solid black;
 }
-.editor{
-    width:600px;
-    height: 300px
+.editor {
+  width: 600px;
+  height: 300px;
 }
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 
-
-.home-button-navlink{
-    text-decoration: none;
-    margin-top: 20px;
-    margin-right: 5px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    display: flex;
-    flex-direction: row;
-    height: 30px;
-    line-height: 30px;
-    
+.home-button-navlink {
+  text-decoration: none;
+  margin-top: 20px;
+  margin-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  line-height: 30px;
 }
 
-.home-text{
-    color: grey;
-    text-decoration: none;
-    margin-top:5px;
-    margin-left: 5px;
-    font-size:20px;
-    
+.home-text {
+  color: grey;
+  text-decoration: none;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 20px;
+}
+
+.scratch-pad-text {
+  color: black;
+  font-size: 25px;
+  margin-left: 6px;
+}
+.scratch-pad-spacer {
+  margin-left: 10px;
+  width: 90%;
+  border-top: 2px solid grey;
+}
+.scratch-pad-container {
+  border-radius: 10px;
+  margin-top: 50px;
+  margin-left: 2.2vw;
+  height: 50vh;
+  width: 16vw;
+  background-color: #f5e98b;
+}
+.scratch-pad-textarea {
+  font-size: 20px;
+  border: none;
+  height: 40vh;
+  margin-top: 25px;
+  margin-left: 25px;
+  width: 13vw;
+  background-color: #f5e98b;
+}
+.scratch-pad-textarea:focus {
+  outline: none;
 }

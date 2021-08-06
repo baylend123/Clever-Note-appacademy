@@ -1,12 +1,12 @@
 /* TODO Add site wide styles */
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap");
 :root {
-  font-family: 'Baloo Chettan 2', cursive;
+  font-family: "Baloo Chettan 2", cursive;
 }
 body {
-  background-color: #eeffff;
+  background-image: url("images/backg.jpeg");
   margin: 0;
 }
 .main-container {
@@ -16,8 +16,8 @@ body {
   grid-template-columns: 1fr 3fr;
   grid-template-rows: 250px 1fr;
   grid-template-areas:
-    'nav note'
-    'nav editor';
+    "nav note"
+    "nav editor";
   gap: 0px;
   max-height: 100%;
   max-width: 100%;
