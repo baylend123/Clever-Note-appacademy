@@ -7,7 +7,7 @@ import { csrfFetch } from '../../store/csrf'
 import { saveNotes, newNote, deleteNote, getNotes } from '../../store/notes';
 import './WriteNote.css';
 
-const WriteNote = ({ note, bookId }) => {
+const WriteNote = () => {
 
   const history = useHistory();
   const dispatch = useDispatch();

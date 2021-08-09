@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { logoutNotebook } from '../../store/notebook'
 import { logoutNote } from '../../store/notes'
@@ -10,6 +10,7 @@ function Button({ user }) {
   const history = useHistory()
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  
 
   const openMenu = () => {
     if (showMenu) return;
@@ -39,7 +40,14 @@ function Button({ user }) {
           <div onMouseLeave={closeMenu}>
             <div className='drop-item'>
               <button align='center' className='logout' onClick={logout}>Log Out</button>
-
+              <div className='profile-spacer'></div>
+              <div className='profile-user'>
+                {user.username}
+              </div>
+              <div className='profile-spacer'></div>
+              <div className='profile-email'>
+                {user.email}
+              </div>
             </div>
           </div>
         </div>

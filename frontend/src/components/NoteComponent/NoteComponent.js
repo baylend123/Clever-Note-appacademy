@@ -12,6 +12,7 @@ const NoteComponent = () => {
   const history = useHistory()
   const dispatch = useDispatch();
   const { id } = useParams();
+  console.log(id)
   const notes = useSelector((state) => state?.notes);
   const clicked = () => {
     return

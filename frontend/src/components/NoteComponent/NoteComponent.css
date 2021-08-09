@@ -15,7 +15,6 @@
   position: relative;
   width: 220px;
   height: 300px;
-
   background: #fafafa;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -44,8 +43,9 @@
   margin-left: 20.7vw;
   padding: 3px;
   height: 100vh;
-  width: 30vw;
+  width: 25vw;
   overflow: scroll;
+  overflow-x: hidden;
 }
 .note-page-header {
   font-size: 48px;
