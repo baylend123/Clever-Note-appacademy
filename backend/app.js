@@ -28,8 +28,8 @@ app.use(helmet({
 app.use(
     csurf({
         cookie: {
-            secure: isProduction,
-            sameSite: isProduction && 'Lax',
+            secure: !isProduction,
+            sameSite: !isProduction && 'Lax',
             httpOnly: true,
         },
     })
