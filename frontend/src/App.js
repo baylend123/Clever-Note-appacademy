@@ -36,7 +36,7 @@ function App() {
     dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))
     history.push(`/`)
   }
-  demoUser()
+  // demoUser()
   return (
     <div className='main-container'>
           <Route path='/login' exact={true}>
