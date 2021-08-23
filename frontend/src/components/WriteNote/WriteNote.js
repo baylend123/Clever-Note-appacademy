@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { csrfFetch } from '../../store/csrf'
-import { saveNotes, newNote, deleteNote, getNotes } from '../../store/notes';
+
+import { saveNotes, newNote } from '../../store/notes';
 import './WriteNote.css';
 
 const WriteNote = () => {
@@ -16,18 +16,18 @@ const WriteNote = () => {
   let text;
   const notes = useSelector(state => state?.notes)
   let focusNote = notes?.find((note) => note?.id.toString() === noteId);
-  const user = useSelector(state => state?.session?.user)
+ 
   
   
   let classname = history.location.pathname.includes('notebook') === 'w' ? 'note-container': 'note-container2 two'
 
   const handleSave = async () => {
     if(noteId === 'new' && notebookId){
-      console.log('here')
+      
       dispatch(newNote(text, notebookId))
     }
     else if(!noteId && !notebookId){
-      console.log("newNote")
+      
       dispatch(newNote(text, notebookId))
     }else{
 
@@ -35,7 +35,7 @@ const WriteNote = () => {
     }
     
   };
-  let timer;
+
 
   return (
     <div className={`${classname}`}

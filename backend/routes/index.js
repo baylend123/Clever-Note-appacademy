@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'production') {
   const path = require('path');
   // Serve the frontend's index.html file at the root route
   router.get('/', (req, res) => {
-    console.log(req.csrfToken())
+    
     res.cookie('XSRF-TOKEN', req.csrfToken());
     res.sendFile(
       path.resolve(__dirname, '../../frontend', 'build', 'index.html')
@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === 'production') {
 // Add a XSRF-TOKEN cookie in development
 if (process.env.NODE_ENV !== 'production') {
   router.get('/api/csrf/restore', (req, res) => {
-    console.log(req.csrfToken)
+    
     res.cookie('XSRF-TOKEN', req.csrfToken());
     res.status(201).json({});
   });

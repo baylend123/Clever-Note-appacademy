@@ -54,7 +54,7 @@ router.post(
   })
 );
 router.post('/delete', asyncHandler(async (req, res) => {
-  console.log('here')
+  
   const noteBookId = req.body.id
   await db.Note.destroy({
     where: {

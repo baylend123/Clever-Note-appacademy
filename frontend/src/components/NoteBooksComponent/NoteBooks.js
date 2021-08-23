@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import {useHistory } from 'react-router-dom';
 
 import './NoteBooks.css';
 import { getNoteBooks, deleteNotebook } from '../../store/notebook';
@@ -9,14 +9,14 @@ import NewNotebookModal from '../NewNotebookModal'
 
 const NoteBooksComponent = () => {
   const history = useHistory()
-  const [showMenu, setShowMenu] = useState(true);
+
   const [notebookDropDown, setNotebookDropDown] = useState();
   const [notebookSearch, setNotebookSearch] = useState()
   const dispatch = useDispatch();
   let notebooks = useSelector((state) => state?.notebooks);
   let user = useSelector((state) => state?.session?.user)
   let notes = useSelector((state) => state?.notes)
-  console.log(notebooks)
+  
 
 
   useEffect(() => {
@@ -27,12 +27,12 @@ const NoteBooksComponent = () => {
   }, [dispatch, user, notebooks?.notebooks?.length]);
   
   const handleNoteBookNotes = (id) => {
-    console.log(id)
+    
     dispatch(getNotes(id))
   }
 
   const handleDelete = (id) => {
-    console.log('here')
+    
     dispatch(deleteNotebook(id))
     
   }
@@ -65,7 +65,7 @@ const NoteBooksComponent = () => {
               }
             >
             </input>
-            <img className='notebook-search-icon' src='https://img.icons8.com/material-outlined/20/000000/search--v1.png' />
+            <img className='notebook-search-icon' src='https://img.icons8.com/material-outlined/20/000000/search--v1.png' alt='' />
           </div>
         </div>
 
@@ -94,10 +94,10 @@ const NoteBooksComponent = () => {
               className={notebookDropDown === notebook.id ? 'notebook-dropdown':'notebook-dropdown-start'} 
               src='https://img.icons8.com/material-outlined/24/000000/expand-arrow--v1.png'
               onClick={() => setNotebookDropDown(notebookDropDown === notebook.id ? null: notebook.id)}
-
+              alt=''
               />
 
-              <img src='https://img.icons8.com/ios-glyphs/30/000000/spiral-bound-booklet.png'/>
+              <img src='https://img.icons8.com/ios-glyphs/30/000000/spiral-bound-booklet.png' alt=''/>
               {notebook.title}
               {notebookDropDown === notebook.id &&
                 <div className='notes-in-notebook-container'>
@@ -137,10 +137,10 @@ const NoteBooksComponent = () => {
               onClick={() => {setNotebookDropDown(notebookDropDown === notebook.id ? null: notebook.id)
                 handleNoteBookNotes(notebook.id)}
               }
-
+                alt=''
               />
 
-              <img src='https://img.icons8.com/ios-glyphs/30/000000/spiral-bound-booklet.png'/>
+              <img src='https://img.icons8.com/ios-glyphs/30/000000/spiral-bound-booklet.png' alt=''/>
               {notebook.title}
               {notebookDropDown === notebook.id &&
                 <div className='notes-in-notebook-container'>

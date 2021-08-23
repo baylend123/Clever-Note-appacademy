@@ -32,7 +32,7 @@ const deleteNoteBook = (id) => {
   }
 }
 export const deleteNotebook = (id) => async (dispatch) => {
-  const noteBook = csrfFetch('/api/notebooks/delete', {
+    csrfFetch('/api/notebooks/delete', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ export const getNoteBooks = () => async (dispatch) => {
   }
 };
 export const addNoteBook = (notebook) => async (dispatch) => {
-  console.log('here')
+  
   const result = await csrfFetch(`/api/notebooks/new`, {
     method: 'POST',
     headers: {
@@ -64,7 +64,7 @@ export const addNoteBook = (notebook) => async (dispatch) => {
     body: JSON.stringify(notebook),
   });
   const newNoteBook = await result.json();
-  console.log(newNoteBook);
+  
   dispatch(addNewNoteBook(newNoteBook));
   
 };
@@ -83,7 +83,7 @@ const noteBooksReducer = (state = initialState, action) => {
 
     case ADDNEWNOTEBOOK:
       newState = [...state];
-      console.log(newState)
+      
       newState = [action.payload, ...newState];
       return newState;
     case LOGOUT:

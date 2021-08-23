@@ -21,7 +21,7 @@ export async function csrfFetch(url, options = {}) {
     // error being the response
   if (res.status >= 400) {
     let ressy = await res.json()
-   console.log(ressy)
+   
     throw res;
   }
 

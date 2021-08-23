@@ -1,8 +1,6 @@
 
 import { Link } from 'react-router-dom';
 import './MainPage.css'
-
-import NoteComponent from '../NoteComponent'
 import MainPageNotes from '../MainPageNotes'
 const MainPage = () => {
     let date = new Date();

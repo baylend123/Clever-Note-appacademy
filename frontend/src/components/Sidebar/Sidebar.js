@@ -1,11 +1,8 @@
-import { useSelector } from 'react-redux'
+
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react';
-import { ReactPainter } from 'react-painter';
-
 import Navigation from '../Navigation'
 import HeaderComponent from '../HeaderComponent'
-import NoteBooksComponent from '../NoteBooksComponent'
 import NewNoteBookButton from '../NewNoteBookButton'
 import './Sidebar.css'
 
@@ -14,7 +11,6 @@ import './Sidebar.css'
 const Sidebar = ({ isLoaded }) => {
 
     const [active, setActive] = useState('')
-    const user = useSelector(state => state?.session?.user)
     
     return (
         <div className='one container'
@@ -45,7 +41,7 @@ const Sidebar = ({ isLoaded }) => {
                     }}
                     className='home-button-navlink'
                 >
-                    <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAA9ElEQVRIie2SOw7CMBBEZzfUOECo+AhxDeAE3INzkGNwEkqEkLgIdCAroUZZKpAJiR2I0zFSivGu3sieAH85RKa5pOmSRDYADX7EnZlk1VVqWxhwTW4nQIa/wV86RaEaPw2/z2rDAWBkGi7b8qWWbUhMs167fbTtaH2bZyyHsrn1BnR33/Ce6/GDYZprkooLWEVRqF7cxjuwPxHTLAoVPT/OaOE3INeB670LGaZpogPrb1oVAgBa67FwsBNgap57KdmEE2HtNSAP7ykVewtwwWsFVIEXBNC5akDGwV6AqQjiMvhHAJOsvgiZiCDud9TavfqXRQ8PSlNYyGNzWwAAAABJRU5ErkJggg==' />
+                    <img alt='' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAA9ElEQVRIie2SOw7CMBBEZzfUOECo+AhxDeAE3INzkGNwEkqEkLgIdCAroUZZKpAJiR2I0zFSivGu3sieAH85RKa5pOmSRDYADX7EnZlk1VVqWxhwTW4nQIa/wV86RaEaPw2/z2rDAWBkGi7b8qWWbUhMs167fbTtaH2bZyyHsrn1BnR33/Ce6/GDYZprkooLWEVRqF7cxjuwPxHTLAoVPT/OaOE3INeB670LGaZpogPrb1oVAgBa67FwsBNgap57KdmEE2HtNSAP7ykVewtwwWsFVIEXBNC5akDGwV6AqQjiMvhHAJOsvgiZiCDud9TavfqXRQ8PSlNYyGNzWwAAAABJRU5ErkJggg==' />
                     <div className='home-text'
                         style={{ color: active === 'notes' ? 'white' : 'grey' }}
                     >
@@ -59,7 +55,7 @@ const Sidebar = ({ isLoaded }) => {
                     }}
                     className='home-button-navlink'
                 >
-                    <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAABU0lEQVRoge2XTU7DMBCFnyM2kSqnC1pWPQJH6DnoJQrbcgQuQjkHHKFH6KopQiSKlOWwYdNKNlPbaYZkvmVs2e/5540DKIriw3A67feU55P6BQYPAOYdazqnBOGtbexmsTCtq9MNZ6RfE+t02i5iDoPHfFIDwJOrU8YaymCVSFQ4f2jgGQFmCaTE4j3SXCPiUSPSGIeRY1V9fH5XdC0xMbDqyCm0A8y9q/V2WrCKrIvQhfMamRXF8vxb+VUvs4zeQybrEtaOnK6SzJM2jsv+nxhMagXsCO3Sy4hHU0sag7nsAZXdT1/hoKkljYsfeH2mlu9Bmjy1+nr9amq50NSKRP8QQybrEtbqSTlevt3W1HIhso6MOrX6Mq5vLWkMJrXUiDS4Ro6dquBR+hp5RgjbJFIiIINXXzsrtdrGbnJbEwgrAHdJlPE5kMG2sfb5yvMqyqD4Ae0ymhqPwy5eAAAAAElFTkSuQmCC' />
+                    <img alt='' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAABU0lEQVRoge2XTU7DMBCFnyM2kSqnC1pWPQJH6DnoJQrbcgQuQjkHHKFH6KopQiSKlOWwYdNKNlPbaYZkvmVs2e/5540DKIriw3A67feU55P6BQYPAOYdazqnBOGtbexmsTCtq9MNZ6RfE+t02i5iDoPHfFIDwJOrU8YaymCVSFQ4f2jgGQFmCaTE4j3SXCPiUSPSGIeRY1V9fH5XdC0xMbDqyCm0A8y9q/V2WrCKrIvQhfMamRXF8vxb+VUvs4zeQybrEtaOnK6SzJM2jsv+nxhMagXsCO3Sy4hHU0sag7nsAZXdT1/hoKkljYsfeH2mlu9Bmjy1+nr9amq50NSKRP8QQybrEtbqSTlevt3W1HIhso6MOrX6Mq5vLWkMJrXUiDS4Ro6dquBR+hp5RgjbJFIiIINXXzsrtdrGbnJbEwgrAHdJlPE5kMG2sfb5yvMqyqD4Ae0ymhqPwy5eAAAAAElFTkSuQmCC' />
                     <div className='home-text'
                         style={{ color: active === 'notebooks' ? 'white' : 'grey' }}
                     >

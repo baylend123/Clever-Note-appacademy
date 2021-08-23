@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { useHistory, Redirect } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+
+import { useDispatch } from 'react-redux';
 import { addNoteBook } from '../../store/notebook.js';
 import './NewNoteBook.css'
 const NewNoteBookForm = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   

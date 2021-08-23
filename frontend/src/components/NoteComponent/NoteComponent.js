@@ -1,7 +1,7 @@
-import { useParams, Link, Route, useHistory, Redirect } from 'react-router-dom';
+import { useParams, Route, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { parse } from 'node-html-parser';
+import { useEffect } from 'react';
+
 
 
 import { getNotes, deleteNote } from '../../store/notes.js';
@@ -12,12 +12,12 @@ const NoteComponent = () => {
   const history = useHistory()
   const dispatch = useDispatch();
   const { id } = useParams();
-  console.log(id)
+  
   const notes = useSelector((state) => state?.notes);
   const clicked = () => {
     return
   }
-  console.log(notes.length)
+  
   const handleDelete = (id) => {
     dispatch(deleteNote(id));
     history.push('/notes')
@@ -25,13 +25,13 @@ const NoteComponent = () => {
 
   useEffect(() => {
     dispatch(getNotes('all'))
-  }, [])
+  }, [dispatch])
 
   return (
     <>
       <div className='notes-container-page'>
         <div className='note-page-header'>
-          <img src='https://img.icons8.com/material-rounded/48/000000/note.png' />
+          <img src='https://img.icons8.com/material-rounded/48/000000/note.png' alt=''/>
           <div>Notes</div>
         </div>
         <div className='note-page-count'>
@@ -47,6 +47,7 @@ const NoteComponent = () => {
                     handleDelete(note?.id) 
                   }
                   }
+                  alt=''
                 />
                 <div className='note-page' key={note}
                   onClick={() => {

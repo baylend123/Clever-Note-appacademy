@@ -12,7 +12,7 @@ const HeaderComponent = () => {
     const [searchVal, setSearchVal] = useState('')
     const [trimSearch, setTrimSearch] = useState([])
     const searchFilter = (searchTerm) => {
-        let searchFilt = notes.filter(note => {
+        let searchFilt = notes.map(note => {
             if(note.body.includes(searchTerm)) return note
         })
         setSearchRes(searchFilt)

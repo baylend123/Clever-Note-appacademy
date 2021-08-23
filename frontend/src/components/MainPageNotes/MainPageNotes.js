@@ -1,10 +1,9 @@
 import { useParams, Route, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { parse } from 'node-html-parser';
 
 
-import { getNotes, deleteNote } from '../../store/notes.js';
+import { getNotes } from '../../store/notes.js';
 import WriteNote from '../WriteNote';
 import './MainPageNotes.css'
 
@@ -15,7 +14,7 @@ const MainPageNotes = () => {
     const notes = useSelector((state) => state?.notes);
     useEffect(() => {
         dispatch(getNotes('all'))
-    }, [getNotes, deleteNote, history.location.pathname])
+    }, [ history.location.pathname, dispatch])
 
     return (
         <>

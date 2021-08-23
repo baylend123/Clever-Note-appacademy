@@ -8,7 +8,7 @@ import NoteComponent from './components/NoteComponent';
 import WriteNote from './components/WriteNote'
 import MainPageComponent from './components/MainPageComponent';
 import NoteBooksComponent from './components/NoteBooksComponent';
-import github from './images/download.png'
+
 
 import * as sessionActions from './store/session';
 
@@ -21,7 +21,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(state => state?.session?.user)
 
-  console.log(user)
+  
   if(user === undefined){
     history.push('/login')
   }
@@ -31,12 +31,7 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
-
-  const demoUser = () => {
-    dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))
-    history.push(`/`)
-  }
-  // demoUser()
+ 
   return (
     <div className='main-container'>
           <Route path='/login' exact={true}>

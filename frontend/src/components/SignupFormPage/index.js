@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import './SignupForm.css';
 
 function SignupFormPage() {
   const history = useHistory()
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
+ 
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -35,7 +35,7 @@ function SignupFormPage() {
   return (
     <div className='signup-container'>
     <div className='main'>
-    <img className='logo-img' src="https://img.icons8.com/pastel-glyph/50/26e07f/note.png"/>
+    <img className='logo-img' src="https://img.icons8.com/pastel-glyph/50/26e07f/note.png" alt=''/>
       <h1 className='sign' align='center'>CleverNote</h1>
       <div className='login-blurb'>Clevernote, the app whos name rhymes with Evernote</div>
         <div className='login-spacer-div'>

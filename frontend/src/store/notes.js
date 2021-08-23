@@ -1,4 +1,4 @@
-import { node } from 'prop-types';
+
 import { csrfFetch } from './csrf';
 
 const notesLoader = 'notes/load';
@@ -49,7 +49,7 @@ export const saveNotes = (note, noteId) => async (dispatch) => {
     body: JSON.stringify(body),
   });
   let savedNote = await result.json()
-    console.log(savedNote)
+    
   dispatch(saveNote(savedNote))
 };
 export const newNote = (note, noteBookId) => async (dispatch) => {
@@ -62,7 +62,7 @@ export const newNote = (note, noteBookId) => async (dispatch) => {
     body: JSON.stringify(body),
   });
   const newNote = await result.json();
-  console.log(newNote)
+  
 
 
   dispatch(saveNote(newNote));
@@ -74,14 +74,14 @@ export const getNotes = (noteBookId) => async (dispatch) => {
     const result = await csrfFetch('/api/notes/all')
     if (result.status === 200) {
       const notes = await result.json();
-      console.log(notes)
+      
       dispatch(loadNotes(notes));
     }
   }else{
   const result = await csrfFetch(`/api/notes/${noteBookId}`);
   if (result.status === 200) {
     const notes = await result.json();
-    console.log(notes)
+    
     dispatch(loadNotes(notes));
   }
 }
@@ -97,7 +97,7 @@ export const deleteNote = (id) => async (dispatch) => {
     body: JSON.stringify({ id: id })
   })
   let note = await result.json();
-  console.log(note)
+  
   dispatch(noteDelete(id));
 }
 const initialState = []
@@ -110,7 +110,7 @@ const notesReducer = (state = initialState, action) => {
       return newState;
     case noteSaver:
       newState = [...state]
-      newState.map((note,idx) => {
+      newState.forEach((note,idx) => {
         if( note.id === action.payload.id){
           newState[idx] = action.payload
         }

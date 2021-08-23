@@ -60,7 +60,7 @@ router.post(
   '/save',
   asyncHandler(async (req, res) => {
     const { note, noteId } = req.body;
-    console.log()
+    
 
     const parsedId = parseInt(noteId, 10);
 
@@ -91,7 +91,7 @@ router.post(
     }
     
     catch (err) {
-      console.log(err);
+      
     }
 
     res.json(newNote);
@@ -100,7 +100,7 @@ router.post(
 router.post('/delete', asyncHandler(async (req, res) => {
   const {id} = req.body
   const noteId = parseInt(id, 10)
-  console.log(noteId)
+  
   let noteDel = await db.Note.destroy({
     where: {
       id: noteId

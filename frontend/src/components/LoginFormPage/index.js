@@ -31,7 +31,7 @@ function LoginFormPage() {
     <div className='login-container'>
 
     <div className='main'>
-    <img className='logo-img' src="https://img.icons8.com/pastel-glyph/50/26e07f/note.png"/>
+    <img className='logo-img' src="https://img.icons8.com/pastel-glyph/50/26e07f/note.png" alt=''/>
       <h1 className='sign' align='center'>CleverNote</h1>
       <div className='login-blurb'>Clevernote, the app whos name rhymes with Evernote</div>
         <div className='login-spacer-div'>
