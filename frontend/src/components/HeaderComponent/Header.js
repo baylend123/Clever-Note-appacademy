@@ -11,21 +11,24 @@ const HeaderComponent = () => {
     const [searchRes, setSearchRes] = useState(notes)
     const [searchVal, setSearchVal] = useState('')
     const [trimSearch, setTrimSearch] = useState([])
-    const searchFilter = (searchTerm) => {
-        let searchFilt = notes.map(note => {
-            if(note.body.includes(searchTerm)) return note
+    const searchFilter = async (searchTerm) => {
+        console.log(searchTerm)
+        let searchFilt = notes.filter(note => {
+            return note.body.includes(searchTerm)
         })
+        console.log(searchFilt)
         setSearchRes(searchFilt)
         setTrimSearch(searchRes.slice(0, 25))
     }
-
+    console.log(searchRes)
+    console.log(trimSearch)
     let searchBar;
     if (userState) {
         searchBar =
             <input
             onChange={(e) => {
                 setSearchVal(e.target.value)
-                searchFilter(searchVal)
+                searchFilter(e.target.value)
 
             }}
                 className='search'

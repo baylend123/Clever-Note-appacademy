@@ -17,6 +17,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-draft-wysiwyg": "^1.14.5",
+    "react-html-parser": "^2.0.2",
     "react-minesweeper": "^1.0.2",
     "react-native-picture-puzzle": "^1.0.0",
     "react-painter": "^0.3.10",

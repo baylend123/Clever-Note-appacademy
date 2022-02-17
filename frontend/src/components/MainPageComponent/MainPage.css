@@ -9,8 +9,8 @@
 .main-welcome-message {
   align-items: right;
   text-shadow: 1px 1px black;
-  margin-top: 15vh;
-  margin-left: 45vw;
+  margin-top: 5vh;
+  margin-left: 15vh;
   color: white;
   font-size: 35px;
   display: flex;

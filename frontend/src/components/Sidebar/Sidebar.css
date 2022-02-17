@@ -63,7 +63,7 @@
   height: 40vh;
   margin-top: 25px;
   margin-left: 25px;
-  width: auto;
+  width: 12vw;
   background-color: #f5e98b;
 }
 .scratch-pad-textarea:focus {
