@@ -20,7 +20,7 @@ function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(state => state?.session?.user)
-  console.log('production test 1')
+  console.log('production test 12')
   
   if(user === undefined){
     history.push('/login')
