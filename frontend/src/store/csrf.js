@@ -22,7 +22,7 @@ export async function csrfFetch(url, options = {}) {
   if (res.status >= 400) {
     let ressy = await res.json()
    
-    throw res;
+    throw ressy;
   }
 
   // if the response status code is under 400, then return the response to the
