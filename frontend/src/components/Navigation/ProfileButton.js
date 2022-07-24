@@ -37,8 +37,7 @@ function Button({ user }) {
       </div>
       {showMenu && (
         <div className='drop'>
-          <div onMouseLeave={closeMenu}>
-            <div className='drop-item'>
+            <div className='drop-item' onMouseLeave={closeMenu}>
               <button align='center' className='logout' onClick={logout}>Log Out</button>
               <div className='profile-spacer'></div>
               <div className='profile-user'>
@@ -50,7 +49,6 @@ function Button({ user }) {
               </div>
             </div>
           </div>
-        </div>
 
       )}
     </>

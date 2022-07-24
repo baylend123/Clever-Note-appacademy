@@ -1,5 +1,5 @@
 .main-page {
-  margin-left: 20vw;
+  /* margin-left: 20vw; */
   height: 500px;
   width: 80vw;
   background-repeat: no-repeat;
@@ -22,7 +22,7 @@
   margin-bottom: 2vh;
   box-shadow: 2px 2px 20px black;
   border-radius: 20px;
-  margin-left: 9vh;
+  margin-left: 1vw;
   overflow: none;
   padding: 20px;
   width: 70vw;

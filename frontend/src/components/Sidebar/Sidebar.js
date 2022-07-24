@@ -13,7 +13,7 @@ const Sidebar = ({ isLoaded }) => {
     const [active, setActive] = useState('')
     
     return (
-        <div className='one container'
+        <div className='container'
         >
             <Navigation isLoaded={isLoaded} />
             <HeaderComponent />

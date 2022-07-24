@@ -20,9 +20,10 @@ function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(state => state?.session?.user)
+  console.log(user)
   console.log('production test 12')
-  
-  if(user === undefined){
+
+  if (user === undefined) {
     history.push('/login')
   }
 
@@ -31,38 +32,43 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
- 
+
   return (
     <div className='main-container'>
+      {!user &&
+        <>
           <Route path='/login' exact={true}>
             <LoginFormPage />
           </Route>
           <Route path='/signup' exact={true}>
             <SignupFormPage />
           </Route>
+        </>
+      }
       {isLoaded && user && (
         <>
+        <div className='after-login'>
+          <Sidebar isLoaded={isLoaded} />
+          <Switch>
+            <Route path='/' exact>
+              <MainPageComponent />
+            </Route>
+            <Route path='/notes'>
+              <NoteComponent />
+            </Route>
+            <Route path='/notebooks' exact>
+              <NoteBooksComponent />
+            </Route>
+            <Route path='/notebook/:notebookId/:noteId'>
+              <WriteNote />
+            </Route>
+            <Route path='/note/new'>
+              <WriteNote />
+            </Route>
 
-      <Sidebar isLoaded={isLoaded} />
-        <Switch>
-          <Route path='/' exact>
-            <MainPageComponent />
-          </Route>
-          <Route path='/notes'>
-            <NoteComponent />
-          </Route>
-          <Route path='/notebooks' exact>
-            <NoteBooksComponent />
-          </Route>
-          <Route path='/notebook/:notebookId/:noteId'>
-          <WriteNote />
-          </Route>
-          <Route path='/note/new'>
-          <WriteNote />
-          </Route>
-
-        </Switch>
-          </>
+          </Switch>
+          </div>
+        </>
 
       )}
     </div>

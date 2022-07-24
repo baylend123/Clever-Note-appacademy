@@ -23,8 +23,9 @@ function SignupFormPage() {
       return dispatch(
         sessionActions.signup({ email, username, password })
       ).catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
+        // console.log(res)
+        // const data = await res.json();
+        if (res.errors) setErrors(res.errors);
       });
     }
     return setErrors([
@@ -33,7 +34,6 @@ function SignupFormPage() {
   };
 
   return (
-    <div className='signup-container'>
     <div className='main'>
     <img className='logo-img' src="https://img.icons8.com/pastel-glyph/50/26e07f/note.png" alt=''/>
       <h1 className='sign' align='center'>CleverNote</h1>
@@ -47,7 +47,7 @@ function SignupFormPage() {
       <form onSubmit={handleSubmit} className='form1'>
         <ul>
           {errors.map((error, idx) => (
-            <p className='sign' key={idx}>
+            <p className='errors' key={idx}>
               {error}
             </p>
           ))}
@@ -99,7 +99,6 @@ function SignupFormPage() {
         onClick={() => history.push('/login')}
         >Login!</div>
       </div>
-    </div>
     </div>
   );
 }

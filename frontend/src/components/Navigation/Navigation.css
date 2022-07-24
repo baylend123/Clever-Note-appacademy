@@ -1,20 +1,24 @@
 @import url("https://css.gg/profile.css");
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
 .nav-bar {
   display: flex;
   justify-content: space-between;
   background-color: #1a1a1a;
   color: #8f8f8f;
 }
+
 .nav-button {
   color: black;
 }
+
 .nav-user-info {
   display: flex;
   flex-direction: row;
   padding: 10px;
   margin-bottom: 20px;
 }
+
 .nav-user-icon {
   height: 40px;
   width: 40px;
@@ -25,24 +29,24 @@
   line-height: 40px;
   text-align: center;
 }
+
 .nav-user-name {
   height: 40px;
   width: 300px;
   line-height: 40px;
 }
+
 .drop {
   margin-top: 3px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   overflow: hidden;
   list-style: none;
   position: absolute;
-  padding: 0;
-  width: 100%;
+  padding: 10px;
+  width: fit-content;
   left: 0;
   top: 48px;
   z-index: 99999;
+  margin-bottom: 3px;
 }
 
 .drop-item {
@@ -54,9 +58,11 @@
   margin-left: 8px;
   width: 15vw;
   background-color: white;
-  height: 15vh;
+  height: fit-content;
   border-radius: 5px;
+  margin-bottom: 5px;
 }
+
 .logout {
   border-radius: 5px;
   margin-top: 10px;
@@ -68,6 +74,7 @@
   border: none;
   background-color: green;
 }
+
 .profile-spacer {
   margin-top: 10px;
   margin-bottom: 10px;

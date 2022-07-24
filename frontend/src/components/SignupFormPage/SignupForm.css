@@ -1,10 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
-.signup-container {
+.main {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
+  width: fit-content;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .logo-img {
   margin-top: 15vh;
@@ -18,4 +20,12 @@
   width: 350px;
   height: 35px;
   border-radius: 5px;
+}
+.errors {
+  font-size: 20px;
+}
+.form1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
