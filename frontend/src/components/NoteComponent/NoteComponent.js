@@ -1,7 +1,7 @@
 import { useParams, Route, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import ReactHtmlParser from 'react-html-parser';
+// import ReactHtmlParser from 'react-html-parser';
 
 
 
@@ -55,7 +55,7 @@ const NoteComponent = () => {
                     history.push(`/notes/${note?.id}`)
                   }}
                 >
-                  <div className='note-content'>{ReactHtmlParser(note?.body)}</div>
+                  <div className='note-content'>{note?.body}</div>
                 </div>
               </div>
               <div className='note-page-edit'>Last Edited {note?.updatedAt.slice(0, 10)}</div>

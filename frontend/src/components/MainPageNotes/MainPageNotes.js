@@ -1,7 +1,7 @@
 import { useParams, Route, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import ReactHtmlParser from 'react-html-parser';
+// import ReactHtmlParser from 'react-html-parser';
 import { getNotes } from '../../store/notes.js';
 import WriteNote from '../WriteNote';
 import './MainPageNotes.css'
@@ -28,7 +28,7 @@ const MainPageNotes = () => {
                                         history.push(`/notes/${note.id}`)
                                     }}
                                 >
-                                    <div>{ReactHtmlParser(note.body)}</div>
+                                    <div>{note.body}</div>
                                 </div>
                             </div>
                         </>
