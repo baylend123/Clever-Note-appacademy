@@ -20,7 +20,6 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-simple-snake": "^0.2.2",
-    "react-stickies": "^0.0.16",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   },
