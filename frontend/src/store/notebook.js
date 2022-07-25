@@ -47,12 +47,9 @@ export const deleteNotebook = (id) => async (dispatch) => {
 }
 export const getNoteBooks = () => async (dispatch) => {
   const result = await csrfFetch(`/api/notebooks/`);
-  if (result.status === 200) {
-
-    const notebooks = await result.json();
-
-    dispatch(loadNoteBook(notebooks.fatTrimmedNoteBooks));
-  }
+    const {notebooks} = await result.json();
+    dispatch(loadNoteBook(notebooks));
+  
 };
 export const addNoteBook = (notebook) => async (dispatch) => {
   

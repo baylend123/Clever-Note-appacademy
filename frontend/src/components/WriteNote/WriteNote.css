@@ -1,10 +1,10 @@
 .note-container {
-  width: 91vw;
+  width: auto;
 }
 
 .note-text-area {
   height: 100%;
-  width: 99.6%;
+  width: auto;
 }
 .ck-editor__editable_inline {
   min-height: 800px;

@@ -12,16 +12,12 @@ const HeaderComponent = () => {
     const [searchVal, setSearchVal] = useState('')
     const [trimSearch, setTrimSearch] = useState([])
     const searchFilter = async (searchTerm) => {
-        console.log(searchTerm)
         let searchFilt = notes.filter(note => {
             return note.body.includes(searchTerm)
         })
-        console.log(searchFilt)
         setSearchRes(searchFilt)
         setTrimSearch(searchRes.slice(0, 25))
     }
-    console.log(searchRes)
-    console.log(trimSearch)
     let searchBar;
     if (userState) {
         searchBar =

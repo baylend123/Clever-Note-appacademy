@@ -134,9 +134,8 @@ const NoteBooksComponent = () => {
               <img 
               className={notebookDropDown === notebook.id ? 'notebook-dropdown':'notebook-dropdown-start'} 
               src='https://img.icons8.com/material-outlined/24/000000/expand-arrow--v1.png'
-              onClick={() => {setNotebookDropDown(notebookDropDown === notebook.id ? null: notebook.id)
-                handleNoteBookNotes(notebook.id)}
-              }
+              onClick={() => setNotebookDropDown(notebookDropDown === notebook.id ? null: notebook.id)}
+                
                 alt=''
               />
 
@@ -157,7 +156,7 @@ const NoteBooksComponent = () => {
                   onClick={() => history.push(`/notebook/${notebook.id}/new`)}
                   >Create New Note</div>
                   </div>
-                {notes?.map(note => {
+                {notebook.Notes?.map(note => {
                   return(
                     <div className='notebook-note'
                     onClick={() =>history.push(`/notebook/${notebook.id}/${note.id}`)}

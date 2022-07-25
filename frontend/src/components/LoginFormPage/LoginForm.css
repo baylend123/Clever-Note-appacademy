@@ -26,11 +26,11 @@
   flex-direction: column;
   justify-content: center;
 }
-.sign {
+.sign-error {
   color: black;
 
   font-weight: bold;
-  font-size: 50px;
+  font-size: 20px;
 }
 .login-blurb {
   font-size: 20px;

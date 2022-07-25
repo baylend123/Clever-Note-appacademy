@@ -1,16 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const asyncHandler = require('express-async-handler');
-const db = require('../../db/models');
+const {Note} = require('../../db/models');
 require('dotenv').config()
-
 const cors = require('cors')
-
-const { getCurrentUserEmail } = require('../../utils/auth')
-
-
-const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 
 router.post('/send-mail', cors(), asyncHandler(async (req, res) => {
@@ -28,13 +21,13 @@ router.post('/send-mail', cors(), asyncHandler(async (req, res) => {
 
 
 }))
-
+router.get('/all', async(req, res) => res.json(await Note.findAll()))
 router.get(
   '/:id',
   asyncHandler(async (req, res, next) => {
     if (req.params.id === 'all') {
       (req.params.id)
-      const notes = await db.Note.findAll({
+      const notes = await Note.findAll({
         order: [['updatedAt', 'DESC']]
       }
       ).map(note => note.dataValues)
@@ -46,7 +39,7 @@ router.get(
       if (req.params.id === 'undefined') {
         next()
       }
-      const notes = await db.Note.findAll({
+      const notes = await Note.findAll({
         where: {
           noteBookId: id,
         },
@@ -64,7 +57,7 @@ router.post(
 
     const parsedId = parseInt(noteId, 10);
 
-    const myNote = await db.Note.findByPk(parsedId);
+    const myNote = await Note.findByPk(parsedId);
 
     if (myNote) {
       await myNote.update({

@@ -2,7 +2,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  margin-left: 25vw;
+  /* margin-left: 25vw; */
 }
 
 .notebooks-header {

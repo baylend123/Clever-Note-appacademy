@@ -13,7 +13,7 @@ function LoginFormPage() {
   const [errors, setErrors] = useState([]);
 
   const handleDemo = () => {
-    dispatch(sessionActions.login({credential: 'Demo-lition', password: 'password'}))
+    dispatch(sessionActions.login({credential: 'demo-user', password: 'password'}))
     history.push('/')
   }
 
@@ -21,8 +21,7 @@ function LoginFormPage() {
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password }))
-      .catch(async (res) => {
-        const data = await res.json();
+      .catch(async (data) => {
         if (data && data.errors) setErrors(data.errors);
       });
   }
@@ -41,7 +40,7 @@ function LoginFormPage() {
         </div>
       <form onSubmit={handleSubmit} className='form1' >
         <ul>
-          {errors.map((error, idx) => <p className='sign' key={idx}>{error}</p>)}
+          {errors.map((error, idx) => <p className='sign-error' key={idx}>{error}</p>)}
         </ul>
         <input
           type='text'

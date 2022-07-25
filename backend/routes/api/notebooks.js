@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const asyncHandler = require('express-async-handler');
-const db = require('../../db/models');
+const {Notebook, Note} = require('../../db/models');
 const { getCurrentUserId } = require('../../utils/auth')
 
 router.get(
@@ -10,32 +10,19 @@ router.get(
 
     const id = await getCurrentUserId(req)
     
-    const noteBooks = await db.Notebook.findAll({
+    const notebooks = await Notebook.findAll({
+      include : {
+        model : Note
+      },
       where: {
         userId: id,
       },
       order: [['createdAt', 'DESC']]
     });
-    let fatTrimmedNoteBooks = await noteBooks.map(
-       (notebook) => {
-         
-        (async () => {
-          let awaitNotes = await db.Note.findAll({
-          where:{
-            noteBookId : notebook.dataValues.id,
-                }
-          })
-          notes = awaitNotes
-          notebook.dataValues['notes'] = notes.dataValues
-        })()
-        return notebook.dataValues
-      
-      }
-    );
     
     res.status(200);
     res.json({
-      fatTrimmedNoteBooks,
+      notebooks,
     });
   })
 );
@@ -44,7 +31,7 @@ router.post(
   asyncHandler(async (req, res) => {
     const userId = await getCurrentUserId(req)
     const { title} = req.body;
-    const newNoteBook = await db.Notebook.build({
+    const newNoteBook = await Notebook.build({
       userId: userId,
       title: title,
       tags: 'easter egg',
@@ -56,12 +43,12 @@ router.post(
 router.post('/delete', asyncHandler(async (req, res) => {
   
   const noteBookId = req.body.id
-  await db.Note.destroy({
+  await Note.destroy({
     where: {
       noteBookId: noteBookId
     }
   })
-  const noteBook = await db.Notebook.findOne({
+  const noteBook = await Notebook.findOne({
     where: {
       id: noteBookId,
     }
