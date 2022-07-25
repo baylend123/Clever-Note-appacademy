@@ -14,8 +14,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sendgrid/mail": "^7.4.2",
     "@faker-js/faker": "^7.3.0",
+    "@sendgrid/mail": "^7.4.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
@@ -37,7 +37,6 @@
     "sqlite3": "^5.0.10"
   },
   "devDependencies": {
-    "@faker-js/faker": "^7.3.0",
     "dotenv-cli": "^4.0.0",
     "nodemon": "^2.0.7"
   }
