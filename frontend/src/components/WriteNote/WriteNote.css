@@ -1,17 +1,9 @@
-.note-container {
-  width: auto;
-}
 
-.note-text-area {
-  height: 100%;
-  width: auto;
-}
-.ck-editor__editable_inline {
-  min-height: 800px;
-  height: 92vh;
-}
 .save-note-button {
   border-radius: 5px;
   background-color: green;
   color: white;
+}
+.not-container{
+  width: 30%;
 }
