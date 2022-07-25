@@ -10,7 +10,7 @@ const { ValidationError } = require('sequelize');
 const {faker} = require('@faker-js/faker')
 const isProduction = environment === 'production';
 const app = express();
-
+console.log()
 app.use(morgan('dev'));
 
 app.use(cookieParser());
