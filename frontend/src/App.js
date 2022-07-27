@@ -51,7 +51,7 @@ function App() {
             <Route path='/' exact>
               <MainPageComponent />
             </Route>
-            <Route path='/notes'>
+            <Route path='/notes/:id'>
               <NoteComponent />
             </Route>
             <Route path='/notebooks' exact>

@@ -1,7 +1,7 @@
 import { useParams, Route, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-// import ReactHtmlParser from 'react-html-parser';
+import { EditorState, convertFromRaw } from 'draft-js';
 
 
 
@@ -13,17 +13,7 @@ const NoteComponent = () => {
   const history = useHistory()
   const dispatch = useDispatch();
   const { id } = useParams();
-  
   const notes = useSelector((state) => state?.notes);
-  const clicked = () => {
-    return
-  }
-  
-  const handleDelete = (id) => {
-    dispatch(deleteNote(id));
-    history.push('/notes')
-  }
-
   useEffect(() => {
     dispatch(getNotes('all'))
   }, [dispatch])
@@ -32,34 +22,28 @@ const NoteComponent = () => {
     <>
       <div className='notes-container-page'>
         <div className='note-page-header'>
-          <img src='https://img.icons8.com/material-rounded/48/000000/note.png' alt=''/>
-          <div>Notes</div>
-        </div>
-        <div className='note-page-count'>
-          {notes?.length} notes
+          <div className='notes-header-text'>
+
+            <img className='notes-header-image' src='https://img.icons8.com/material-rounded/48/000000/note.png' alt='' />
+            <div>Notes</div>
+          </div>
+          <div className='note-page-count'>
+            {notes?.length} notes
+          </div>
         </div>
         {notes?.map((note) => {
 
           return (
-            <>
-              <div key={note?.id} onLoad={clicked}>
-                <img className='delete-note-button' align='right' src='https://img.icons8.com/windows/20/000000/xbox-x.png'
-                  onClick={() => {
-                    handleDelete(note?.id) 
-                  }
-                  }
-                  alt=''
-                />
-                <div className='note-page' key={note}
-                  onClick={() => {
-                    history.push(`/notes/${note?.id}`)
-                  }}
-                >
-                  <div className='note-content'>{note?.body}</div>
-                </div>
-              </div>
+
+            <div className={parseInt(id, 10) === note.id ? 'note-page-active' : 'note-page'} key={note.id}
+              onClick={() => {
+                history.push(`/notes/${note?.id}`)
+              }}
+            >
+              {EditorState.createWithContent(convertFromRaw(JSON.parse(note.body))).getCurrentContent().getPlainText('\u0001')}
               <div className='note-page-edit'>Last Edited {note?.updatedAt.slice(0, 10)}</div>
-            </>
+            </div>
+
           );
         }
 

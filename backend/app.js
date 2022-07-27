@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const { environment } = require('./config');
 const routes = require('./routes');
+const {Note} = require('./db/models')
 const { ValidationError } = require('sequelize');
 const {faker} = require('@faker-js/faker')
 const isProduction = environment === 'production';
@@ -33,6 +34,14 @@ app.use(
         },
     })
 );
+app.post('/testing-save', async(req, res) => {
+    const note = await Note.create({body : JSON.stringify(req.body)})
+    res.json(note.id)
+})
+app.get('/testing-get', async(req, res) => {
+    let note = await Note.findByPk(502)
+    res.json(note)
+})
 
 app.use(routes);
 

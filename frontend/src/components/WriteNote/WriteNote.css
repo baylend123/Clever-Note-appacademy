@@ -4,6 +4,16 @@
   background-color: green;
   color: white;
 }
-.not-container{
-  width: 30%;
+.note-container{
+  border-left: 1px solid grey;
+  background-color: white;
+}
+.text-editor{
+  background-color: white;
+  width : 60vw;
+}
+.DraftEditor-root{
+  margin-top: 10px;
+  height: 90vh;
+  border-radius: 10px;
 }

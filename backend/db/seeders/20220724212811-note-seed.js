@@ -1,6 +1,7 @@
 'use strict';
 const {Notebook, Note}  = require('../models')
 const {faker} = require('@faker-js/faker')
+const {EditorState, convertToRaw, ContentState} = require('draft-js')
 module.exports = {
   async up (queryInterface, Sequelize) {
     /**
@@ -15,7 +16,11 @@ module.exports = {
    const notebooks = await Notebook.findAll()
    for await (let el of notebooks){
     for await (let i of new Array(50)){
-      await el.createNote({body : faker.lorem.paragraph()})
+      const text = faker.lorem.paragraph()
+      const contentState = ContentState.createFromText(text)
+      const state = EditorState.createWithContent(contentState)
+      const rawObj = convertToRaw(state.getCurrentContent())
+      await el.createNote({body : JSON.stringify(rawObj)})
     }
    }
   },

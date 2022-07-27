@@ -1,9 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { Editor, EditorState } from 'draft-js';
+import { Editor, EditorState, convertToRaw, convertFromHTML, convertFromRaw } from 'draft-js';
 import 'draft-js/dist/Draft.css';
 
 import { saveNotes, newNote } from '../../store/notes';
@@ -14,14 +12,13 @@ const WriteNote = () => {
   const { notebookId } = useParams();
   const notes = useSelector(state => state?.notes)
   let focusNote = notes?.find((note) => note?.id.toString() === noteId);
-  const [editorState, setEditorState] = useState(
-    focusNote ? focusNote : 
-    () => EditorState.createEmpty(),
-  );
-  console.log(editorState)
-  const history = useHistory();
+  const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
   const dispatch = useDispatch();
-  let text;
+  useEffect(() => {
+    if (focusNote) {
+      setEditorState(EditorState.createWithContent(convertFromRaw(JSON.parse(focusNote.body))))
+    }
+  }, [focusNote])
   const handleSave = async () => {
     if (noteId === 'new' && notebookId) {
 
@@ -29,12 +26,11 @@ const WriteNote = () => {
     }
     else if (!noteId && !notebookId) {
 
-      dispatch(newNote(text, notebookId))
+      dispatch(newNote(convertToRaw(editorState.getCurrentContent()), notebookId))
     } else {
 
-      dispatch(saveNotes(text, noteId));
+      dispatch(saveNotes(convertToRaw(editorState.getCurrentContent()), noteId));
     }
-
   };
 
 
@@ -49,17 +45,10 @@ const WriteNote = () => {
         Save Your Note
       </button>
       <div className='text-editor'>
-        <Editor editorState={editorState} onChange={setEditorState} />
-        {/* <CKEditor
-          editor={ClassicEditor}
-          data={focusNote?.body}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-
-            text = `<div>${{data}}<div>`
-
-          }} */}
-        {/* /> */}
+        <Editor
+          editorState={editorState}
+          onChange={setEditorState}
+        />
       </div>
     </div>
   );

@@ -1,9 +1,10 @@
 import { useParams, Route, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-// import ReactHtmlParser from 'react-html-parser';
+import LoadingAnimation from '../LoadingAnimation/LoadingAnimation.js';
 import { getNotes } from '../../store/notes.js';
 import WriteNote from '../WriteNote';
+import { Editor, EditorState, convertToRaw, convertFromHTML, convertFromRaw } from 'draft-js';
 import './MainPageNotes.css'
 
 const MainPageNotes = () => {
@@ -18,7 +19,7 @@ const MainPageNotes = () => {
     return (
         <>
             <div className='notes-container-home'>
-                {notes?.map((note) => {
+                {notes ? notes.map((note) => {
 
                     return (
                         <>
@@ -28,14 +29,14 @@ const MainPageNotes = () => {
                                         history.push(`/notes/${note.id}`)
                                     }}
                                 >
-                                    <div>{note.body}</div>
+                                    <div>{EditorState.createWithContent(convertFromRaw(JSON.parse(note.body))).getCurrentContent().getPlainText('\u0001')}</div>
                                 </div>
                             </div>
                         </>
                     );
                 }
 
-                )}
+                ) : <LoadingAnimation />}
             </div>
             <Route path='/notes/:noteId'>
                 <WriteNote bookId={id} note={notes?.notes} />

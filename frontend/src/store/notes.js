@@ -107,6 +107,7 @@ const notesReducer = (state = initialState, action) => {
   switch (action.type) {
     case notesLoader:
       newState = [...action.payload]
+      newState.loaded = true
       return newState;
     case noteSaver:
       newState = [...state]
