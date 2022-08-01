@@ -58,6 +58,7 @@ function App() {
               <NoteBooksComponent />
             </Route>
             <Route path='/notebook/:notebookId/:noteId'>
+              <NoteComponent />
               <WriteNote />
             </Route>
             <Route path='/note/new'>
