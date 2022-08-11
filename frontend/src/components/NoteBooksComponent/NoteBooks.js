@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {useHistory } from 'react-router-dom';
-
+import { EditorState, convertFromRaw } from 'draft-js';
 import './NoteBooks.css';
 import { getNoteBooks, deleteNotebook } from '../../store/notebook';
 import {getNotes} from '../../store/notes';
@@ -119,7 +119,7 @@ const NoteBooksComponent = () => {
                       <div className='notebook-note'
                       onClick={() =>history.push(`/notebook/${notebook.id}/${note.id}`)}
                     >
-                      {note.body.slice(0,500)}
+                      {EditorState.createWithContent(convertFromRaw(JSON.parse(note.body))).getCurrentContent().getPlainText('\u0001')}
                     </div>
                     )
                   })}
@@ -161,7 +161,7 @@ const NoteBooksComponent = () => {
                     <div className='notebook-note'
                     onClick={() =>history.push(`/notebook/${notebook.id}/${note.id}`)}
                     >
-                      {note.body.slice(0,500)}
+                      {EditorState.createWithContent(convertFromRaw(JSON.parse(note.body))).getCurrentContent().getPlainText('\u0001')}
                     </div>
                   )
                 })}

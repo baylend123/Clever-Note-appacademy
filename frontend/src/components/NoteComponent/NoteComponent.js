@@ -10,6 +10,7 @@ import WriteNote from '../WriteNote';
 import './NoteComponent.css';
 
 const NoteComponent = () => {
+  console.log('here')
   const history = useHistory()
   const dispatch = useDispatch();
   const { id } = useParams();
