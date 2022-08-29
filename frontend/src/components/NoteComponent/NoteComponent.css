@@ -29,8 +29,7 @@
   height: 500px;
   background: #fafafa;
   margin-bottom: 20px;
-  /* padding-bottom: 5px; */
-  border-bottom: 1px solid grey;
+  padding: 10px;
 
 }
 .note-page-active {
@@ -59,7 +58,7 @@
   /* margin-left: 20.7vw; */
   padding: 3px;
   height: 100vh;
-  width: 20vw;
+  width: auto;
   overflow: scroll;
   overflow-x: hidden;
 }
