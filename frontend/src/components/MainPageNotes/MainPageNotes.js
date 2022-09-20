@@ -29,7 +29,7 @@ const MainPageNotes = () => {
                                         history.push(`/notes/${note.id}`)
                                     }}
                                 >
-                                    <div>{EditorState.createWithContent(convertFromRaw(JSON.parse(note.body))).getCurrentContent().getPlainText('\u0001')}</div>
+                                    <div>{note.body}</div>
                                 </div>
                             </div>
                         </>

@@ -36,7 +36,7 @@ router.post(
 
     if (myNote) {
       await myNote.update({
-        body: JSON.stringify(note),
+        body: note,
       });
 
       res.status(200);
@@ -50,16 +50,17 @@ router.post(
   '/new',
   asyncHandler(async (req, res) => {
     const { note, noteBookId } = req.body;
+    console.log(note, noteBookId)
     let newNote
     try {
-      newNote = await db.Note.create({
+      newNote = await Note.create({
         noteBookId: noteBookId ? noteBookId : 1,
-        body: JSON.stringify(note),
+        body: note,
       });
     }
 
     catch (err) {
-
+      console.log(err)
     }
 
     res.json(newNote);

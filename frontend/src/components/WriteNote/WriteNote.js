@@ -6,75 +6,57 @@ import 'draft-js/dist/Draft.css';
 
 import { saveNotes, newNote } from '../../store/notes';
 import './WriteNote.css';
+import { useQuill } from 'react-quilljs';
+import { handleSave } from './saveUtils';
+import 'quill/dist/quill.snow.css'; // Add css for snow theme
+// import 'quill/dist/quill.bubble.css'; // Add css for bubble theme
 
-const WriteNote = () => {
+const WriteNote =  () => {
   const dispatch = useDispatch();
   const { noteId } = useParams();
   const { notebookId } = useParams();
-  
-  const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
-  
-  
-  const notes = useSelector(state => state?.notes)
-  let focusNote = notes?.find((note) => note?.id.toString() === noteId);
-  
-  
-  useEffect(() => {
-    if (focusNote) {
-      setEditorState(EditorState.createWithContent(convertFromRaw(JSON.parse(focusNote.body))))
-    }
-  }, [focusNote])
 
-  useEffect(() => {console.log('state change')},[editorState])
+  const selectedNote = useSelector(state => state.notes.find(el => el.id === parseInt(noteId)))
+  const theme = 'snow';
+  // const theme = 'bubble';
 
-  const handleKeyCommand = (command, editorState) => {
-    const newState = RichUtils.handleKeyCommand(editorState, command);
-
-    if(newState){
-      setEditorState(newState)
-    }
-  }
-
-
-  const handleSave = async () => {
-    if (noteId === 'new' && notebookId) {
-
-      dispatch(newNote(editorState, notebookId))
-    }
-    else if (!noteId && !notebookId) {
-
-      dispatch(newNote(convertToRaw(editorState.getCurrentContent()), notebookId))
-    } else {
-
-      dispatch(saveNotes(convertToRaw(editorState.getCurrentContent()), noteId));
-    }
+  const modules = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+    ],
   };
 
 
-  return (
-    <div className='note-container'
+  const placeholder = 'Compose an epic...';
 
-    >
+  const formats = ['bold', 'italic', 'underline', 'strike'];
+
+  const { quill, quillRef } = useQuill({ theme, modules, formats, placeholder });
+
+  let HTMLcontent;
+
+  useEffect(() => {
+    if (quill) {
+      if(selectedNote){
+        quill.root.innerHTML = selectedNote.body
+      }
+      quill.on('text-change', (delta, oldDelta, source) => {
+        HTMLcontent = quill.root.innerHTML
+      });
+    }
+  }, [quill, selectedNote])
+
+
+  return (
+    <div style={{ backgroundColor:'white', width: '60vw', height: 'auto', border: '1px solid lightgray' }}>
+      <div 
+      ref={quillRef} />
       <button
-        onClick={handleSave}
-        className='save-note-button'
+      onClick={() => handleSave(HTMLcontent, dispatch, newNote, saveNotes, notebookId, noteId)}
       >
-        Save Your Note
+        Test save
       </button>
-      <div className='text-editor'>
-      <button
-      onClick={() => setEditorState((prev) => RichUtils.toggleInlineStyle(prev, 'BOLD'))}
-      >
-        Test Bold
-      </button>
-        <Editor
-          editorState={editorState}
-          onChange={setEditorState}
-          handleKeyCommand={handleKeyCommand}
-        />
-      </div>
     </div>
   );
 };
-
 export default WriteNote;

@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { EditorState, convertFromRaw } from 'draft-js';
 import { getNotes } from '../../store/notes';
 import './Header.css'
 
@@ -19,7 +18,7 @@ const HeaderComponent = () => {
     }, [])
     const searchFilter = async (searchTerm) => {
         let searchFilt = notes?.filter(note => {
-            return EditorState.createWithContent(convertFromRaw(JSON.parse(note.body))).getCurrentContent().getPlainText('\u0001').toLowerCase().includes(searchTerm.toLowerCase())
+            return note.toLowerCase().includes(searchTerm.toLowerCase())
         })
         setTrimSearch(searchFilt.slice(0, 25))
     }
@@ -59,7 +58,7 @@ const HeaderComponent = () => {
                                     history.push(`/notes/${note.id}`)
                                 }}
                                 className='search-result-individual'>
-                                {EditorState.createWithContent(convertFromRaw(JSON.parse(note.body))).getCurrentContent().getPlainText('\u0001')}
+                                {note.body}
                             </div>
 
                         )

@@ -54,18 +54,21 @@ export const saveNotes = (note, noteId) => async (dispatch) => {
 };
 export const newNote = (note, noteBookId) => async (dispatch) => {
   const body = { note, noteBookId };
-  const result = await csrfFetch('/api/notes/new', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  });
-  const newNote = await result.json();
+  try{
+    const result = await csrfFetch('/api/notes/new', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    const newNote = await result.json();
   
+    dispatch(saveNote(newNote));
 
-
-  dispatch(saveNote(newNote));
+  }
+  catch(e){
+  }
   return newNote.id;
 };
 

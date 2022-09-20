@@ -10,7 +10,7 @@ import WriteNote from '../WriteNote';
 import './NoteComponent.css';
 
 const NoteComponent = () => {
-  console.log('here')
+
   const history = useHistory()
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -41,7 +41,7 @@ const NoteComponent = () => {
                 history.push(`/notes/${note?.id}`)
               }}
             >
-              {EditorState.createWithContent(convertFromRaw(JSON.parse(note.body))).getCurrentContent().getPlainText('\u0001')}
+              {note.body}
               <div className='note-page-edit'>Last Edited {note?.updatedAt.slice(0, 10)}</div>
             </div>
 

@@ -17,10 +17,7 @@ module.exports = {
    for await (let el of notebooks){
     for await (let i of new Array(50)){
       const text = faker.lorem.paragraph()
-      const contentState = ContentState.createFromText(text)
-      const state = EditorState.createWithContent(contentState)
-      const rawObj = convertToRaw(state.getCurrentContent())
-      await el.createNote({body : JSON.stringify(rawObj)})
+      await el.createNote({body : text})
     }
    }
   },
